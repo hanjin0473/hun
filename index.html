@@ -17,7 +17,6 @@
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
         
-        /* 탭 버튼 스타일 */
         .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
@@ -25,7 +24,6 @@
         .content-section { display: none; }
         .content-section.active { display: block; }
 
-        /* 캐릭터 카드 스타일 고정 */
         .sys-card { 
             border: 1px solid #e2e8f0; 
             background: white; 
@@ -36,7 +34,7 @@
         }
         .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); }
         
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
     </style>
 </head>
@@ -53,28 +51,53 @@
         </nav>
     </header>
 
-    <main id="section-world" class="content-section active max-w-4xl mx-auto py-4">
-        <div class="bg-white border border-slate-200 p-6 md:p-12 rounded-xl shadow-sm">
-            <h2 class="orbitron text-2xl font-bold mb-6 border-l-4 border-blue-600 pl-4">WORLD SETTING</h2>
-            <div class="space-y-6 text-slate-600 text-sm md:text-base leading-relaxed">
-                <p>20xx년, 대균열 '게이트'의 발생과 함께 인류는 각성자들의 시대를 맞이했습니다.</p>
-                <div class="p-4 bg-slate-50 rounded-lg border border-slate-100">
-                    <p class="font-bold text-slate-900 mb-1">● 게이트와 마물</p>
-                    <p class="text-xs">일반 병기가 통하지 않는 이계의 존재들. 오직 마력을 가진 각성자만이 이들을 저지할 수 있습니다.</p>
-                </div>
-                <p>현재는 길드 시스템이 정착되어, 각성자들은 기업화된 단체에 소속되어 게이트를 공략하고 이권을 챙기는 것이 일상이 되었습니다.</p>
-            </div>
-        </div>
-    </main>
+    <div class="max-w-7xl mx-auto">
+        <main id="section-world" class="content-section active py-4">
+            <article class="bg-white border border-slate-200 p-8 md:p-12 rounded-2xl shadow-sm relative overflow-hidden max-w-4xl mx-auto">
+                <div class="absolute top-0 right-0 p-4 orbitron text-[40px] font-black text-slate-50 opacity-[0.03] select-none uppercase">Classified</div>
 
-    <main id="section-characters" class="content-section max-w-7xl mx-auto">
-        <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+                <header class="mb-12 border-l-4 border-blue-600 pl-6">
+                    <h2 class="orbitron text-2xl font-bold text-slate-900 tracking-tighter mb-4">SYNOPSIS: VIOLET SEOUL</h2>
+                    <p class="text-slate-500 italic text-sm leading-relaxed">
+                        "서울의 하늘은 더 이상 푸르지 않다. 점멸하는 게이트의 붉은 빛과 홀로그램이 섞여 기묘한 보랏빛을 띤다.<br>
+                        이곳에서 등급은 곧 계급이며, 법이다. 능력이 자본이 되고, 자본이 다시 능력이 되는 비정한 도시."
+                    </p>
+                </header>
+                
+                <div class="space-y-12">
+                    <section>
+                        <h3 class="orbitron text-xs font-bold text-blue-600 mb-4 flex items-center gap-2">
+                            <span class="w-8 h-[1px] bg-blue-600"></span> 01. RATING SYSTEM
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <strong class="text-xs text-slate-900 block mb-2">● HUNTER RANK (F ~ S)</strong>
+                                <p class="text-[11px] text-slate-500 leading-5">단순 전투력이 아닌 '현상 개입 범위' 기준. S급은 국가재난급 전력으로 분류됩니다.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                                <strong class="text-xs text-slate-900 block mb-2">● GATE GRADE</strong>
+                                <p class="text-[11px] text-slate-500 leading-5">단독 공략 시의 '최소 생존 기준'. 현상 왜곡 및 잔재의 변화를 이변 판정의 척도로 삼습니다.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </main>
+
+        <main id="section-characters" class="content-section py-4">
+            <div class="mb-8 flex justify-between items-center border-b border-slate-100 pb-4">
+                <h2 class="orbitron text-sm font-bold text-slate-400 tracking-widest uppercase">Registered Awakened List</h2>
+                <span id="totalCount" class="text-[10px] text-slate-300 orbitron">TOTAL: 0 UNITS</span>
             </div>
-    </main>
+            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                </div>
+        </main>
+    </div>
 
     <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-0 md:p-4 bg-slate-900/60 backdrop-blur-md">
         <div class="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
             <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-3xl">×</button>
+            
             <div class="w-full md:w-1/3 bg-slate-100 p-4 border-b md:border-b-0 md:border-r border-slate-200 shrink-0">
                 <div class="relative mb-3">
                     <img id="modalMainImg" src="" class="w-full aspect-[3/4] object-cover rounded-lg shadow-md">
@@ -82,6 +105,7 @@
                 </div>
                 <div id="thumbNav" class="flex gap-2 overflow-x-auto pb-2 custom-scroll"></div>
             </div>
+
             <div class="w-full md:w-2/3 p-6 md:p-10 overflow-y-auto custom-scroll">
                 <div class="mb-6">
                     <div class="flex items-center gap-2 mb-2">
@@ -92,18 +116,26 @@
                     <p id="modalQuote" class="text-sm md:text-lg text-blue-600 italic mt-2 border-l-4 border-blue-100 pl-4"></p>
                 </div>
                 <div id="modalHashtags" class="flex flex-wrap gap-1.5 mb-6"></div>
+                
                 <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-slate-100">
                     <div><p class="text-[9px] text-slate-400 orbitron">JOB</p><p id="modalJob" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron">WEAPON</p><p id="modalWeapon" class="font-bold text-xs text-blue-600"></p></div>
-                    <div><p class="text-[9px] text-slate-400 orbitron">PYSICAL</p><p id="modalPhysical" class="font-bold text-xs"></p></div>
+                    <div><p class="text-[9px] text-slate-400 orbitron">PHYSICAL</p><p id="modalPhysical" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron">SKILLS</p><p id="modalSkillSum" class="font-bold text-xs"></p></div>
                 </div>
+                
                 <div id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed space-y-3 mb-6"></div>
+                
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <div class="flex-1 bg-blue-50 p-3 rounded-lg"><span class="text-[9px] orbitron font-bold text-blue-500 block mb-1">LIKES</span><p id="modalLikes" class="text-xs font-semibold text-blue-900"></p></div>
-                    <div class="flex-1 bg-slate-50 p-3 rounded-lg"><span class="text-[9px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span><p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p></div>
+                    <div class="flex-1 bg-blue-50 p-3 rounded-lg">
+                        <span class="text-[9px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
+                        <p id="modalLikes" class="text-xs font-semibold text-blue-900"></p>
+                    </div>
+                    <div class="flex-1 bg-slate-50 p-3 rounded-lg">
+                        <span class="text-[9px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span>
+                        <p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p>
+                    </div>
                 </div>
-                <div class="h-10 md:hidden"></div>
             </div>
         </div>
     </div>
@@ -367,8 +399,8 @@
     faction: "청룡",
     job: "궁수",
     weapon: "활",
-    height: "미상",
-    weight: "미상",
+    height: "176cm",
+    weight: "65kg",
     quote: "착각하지 마. 챙긴 게 아니라, 그냥 네가 죽으면 귀찮아지니까 그런 거야.",
     likes: "정확한 결과, 실력 인정, 확실한 우위",
     dislikes: "동정, 형과의 비교, 실력 무시",
@@ -392,8 +424,8 @@
     faction: "무소속",
     job: "광전사 / 수배자",
     weapon: "대검",
-    height: "미상",
-    weight: "미상",
+    height: "190cm",
+    weight: "88kg",
     quote: "겁먹는 얼굴이 제일 재밌어. 그러니까 더 발버둥쳐 봐.",
     likes: "전투, 자극, 힘으로 짓누르는 순간",
     dislikes: "복종 거부, 도발성 비하, 약자 코스프레",
@@ -412,66 +444,58 @@
     ]
 }
             ];
-
-
 function switchTab(tabId) {
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
             document.getElementById(`section-${tabId}`).classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
         }
 
-        const grid = document.getElementById('characterGrid');
         function init() {
-            characters.forEach((char, index) => {
-                const card = document.createElement('div');
-                card.className = "sys-card p-2 rounded-lg cursor-pointer group";
-                card.onclick = () => openModal(index);
-                card.innerHTML = `
+            const grid = document.getElementById('characterGrid');
+            document.getElementById('totalCount').innerText = `TOTAL: ${characters.length} UNITS`;
+            
+            grid.innerHTML = characters.map((char, index) => `
+                <div class="sys-card p-2 rounded-lg cursor-pointer group" onclick="openModal(${index})">
                     <div class="overflow-hidden rounded-md mb-2">
-                        <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500" alt="${char.name}">
                     </div>
                     <div>
                         <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
                         <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
                         <p class="text-[9px] text-slate-400 mt-0.5 truncate">${char.hashtags[0]}</p>
                     </div>
-                `;
-                grid.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
 
         function openModal(index) {
             const char = characters[index];
-            document.getElementById('modalName').innerText = char.name;
+            document.getElementById('modalMainImg').src = char.images[0];
+            document.getElementById('modalIdCode').innerText = char.idCode;
             document.getElementById('modalRank').innerText = char.rank;
             document.getElementById('modalFaction').innerText = char.faction;
-            document.getElementById('modalQuote').innerText = `"${char.quote}"`;
+            document.getElementById('modalName').innerText = char.name;
+            document.getElementById('modalQuote').innerText = char.quote;
             document.getElementById('modalJob').innerText = char.job;
             document.getElementById('modalWeapon').innerText = char.weapon;
             document.getElementById('modalPhysical').innerText = `${char.height} / ${char.weight}`;
             document.getElementById('modalSkillSum').innerText = char.skills.join(', ');
+            document.getElementById('modalHistory').innerHTML = char.history;
             document.getElementById('modalLikes').innerText = char.likes;
             document.getElementById('modalDislikes').innerText = char.dislikes;
-            document.getElementById('modalHistory').innerHTML = char.history;
-            document.getElementById('modalIdCode').innerText = char.idCode;
-            const hashContainer = document.getElementById('modalHashtags');
-            hashContainer.innerHTML = char.hashtags.map(h => `<span class="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded">${h}</span>`).join('');
-            const mainImg = document.getElementById('modalMainImg');
-            mainImg.src = char.images[0];
-            const thumbNav = document.getElementById('thumbNav');
-            thumbNav.innerHTML = '';
-            char.images.forEach((imgSrc, i) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = `w-10 h-14 object-cover cursor-pointer rounded border-2 ${i === 0 ? 'border-blue-500' : 'border-transparent'}`;
-                thumb.onclick = () => {
-                    mainImg.src = imgSrc;
-                    document.querySelectorAll('#thumbNav img').forEach(img => img.classList.replace('border-blue-500', 'border-transparent'));
-                    thumb.classList.replace('border-transparent', 'border-blue-500');
-                };
-                thumbNav.appendChild(thumb);
-            });
+
+            // 해시태그 생성
+            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => 
+                `<span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-md font-medium">${tag}</span>`
+            ).join('');
+
+            // 썸네일 네비게이션 생성
+            document.getElementById('thumbNav').innerHTML = char.images.map(img => 
+                `<img src="${img}" onclick="document.getElementById('modalMainImg').src='${img}'" class="w-12 h-16 object-cover rounded cursor-pointer hover:border-2 border-blue-500 shrink-0">`
+            ).join('');
+
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -481,7 +505,10 @@ function switchTab(tabId) {
             document.body.style.overflow = 'auto';
         }
 
-        init();
+        window.onload = () => {
+            init();
+            switchTab('world');
+        };
     </script>
 </body>
 </html>
