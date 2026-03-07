@@ -16,30 +16,24 @@
             background-size: 30px 30px;
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
-        
         .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; white-space: nowrap; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
-        
         .filter-btn { border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 16px; border-radius: 99px; font-size: 11px; font-weight: 600; transition: all 0.2s; }
         .filter-btn.active { background: var(--sys-blue); color: white; border-color: var(--sys-blue); box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2); }
-
         .content-section { display: none; animation: fadeIn 0.4s ease-out; }
         .content-section.active { display: block; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; border-radius: 12px; }
+        .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; border-radius: 12px; position: relative; }
         .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 132, 255, 0.1); }
-        
+        .card-img-wrap { position: relative; width: 100%; aspect-ratio: 3 / 4.2; overflow: hidden; border-radius: 14px 14px 0 0; background: #f8fafc; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+        .card-info { padding: 12px 10px; background: white; }
+        .card-rank-tag { position: absolute; top: 8px; left: 8px; z-index: 10; backdrop-filter: blur(4px); background: rgba(30, 41, 59, 0.7); color: white; padding: 2px 8px; border-radius: 6px; font-size: 10px; }
         .gate-card { border-left: 4px solid var(--sys-blue); background: #f8fafc; padding: 1.25rem; border-radius: 0.75rem; }
         .rank-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-family: 'Orbitron'; }
-
         .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: var(--sys-blue); }
-
-        /* Modal Enhanced */
         #charModal { backdrop-filter: blur(8px); }
         .modal-container { max-height: 90vh; width: 95%; max-width: 1100px; }
     </style>
@@ -69,13 +63,13 @@
                         <h2 class="orbitron text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
                         <div class="space-y-5 text-slate-300 text-sm md:text-base leading-relaxed">
                             <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
-                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 심장 부근에는 강대한 에너지를 품은 '마석'이 생겨나며 이 에너지는 각성자의 힘의 근원이 됩니다.</p>
+                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 에너지는 심장 부근의 '마석'에서 기인합니다.</p>
                         </div>
                     </section>
                     <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="gate-card"><h4 class="font-bold text-slate-800 text-sm mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">정해진 주기에 따라 마물이 유출되는 일반적인 통로.</p></div>
-                        <div class="gate-card border-l-red-500 bg-red-50"><h4 class="font-bold text-red-700 text-sm mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">보스 미처치 시 마물이 현실로 쏟아져 나오는 상태.</p></div>
-                        <div class="gate-card border-l-purple-500 bg-purple-50"><h4 class="font-bold text-purple-700 text-sm mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">내부 환경이 시시각각 변하는 예측 불가능한 구역.</p></div>
+                        <div class="gate-card"><h4 class="font-bold text-slate-800 text-sm mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">마물이 유출되는 일반적인 통로.</p></div>
+                        <div class="gate-card border-l-red-500 bg-red-50"><h4 class="font-bold text-red-700 text-sm mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">마물이 현실로 쏟아져 나오는 상태.</p></div>
+                        <div class="gate-card border-l-purple-500 bg-purple-50"><h4 class="font-bold text-purple-700 text-sm mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">예측 불가능한 특수 구역.</p></div>
                     </section>
                 </div>
                 <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm h-fit">
@@ -96,21 +90,19 @@
                 <button onclick="renderFaction('WHITE')" class="filter-btn orbitron" id="btn-WHITE">WHITE NIGHT</button>
                 <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDEPENDENT</button>
             </div>
-            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
+            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"></div>
         </main>
     </div>
 
     <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-slate-900/80">
-        <div class="modal-container relative bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl animate-fadeIn">
+        <div class="modal-container relative bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
             <button onclick="closeModal()" class="absolute top-6 right-8 z-50 text-slate-400 hover:text-blue-600 orbitron text-4xl font-light">×</button>
-            
             <div class="w-full md:w-2/5 bg-slate-100 p-6 flex flex-col">
                 <div class="flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white shadow-inner mb-4">
                     <img id="modalMainImg" src="" class="w-full h-full object-cover">
                 </div>
                 <div id="thumbNav" class="flex gap-3 overflow-x-auto py-2 custom-scroll"></div>
             </div>
-
             <div class="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scroll flex flex-col">
                 <div class="mb-8">
                     <div class="flex items-center gap-3 mb-3">
@@ -123,42 +115,27 @@
                     </div>
                     <p id="modalQuote" class="text-lg text-slate-600 italic font-medium leading-relaxed mt-4 border-l-4 border-blue-500 pl-6"></p>
                 </div>
-
-                <div class="grid grid-cols-3 gap-6 mb-8 p-6 bg-slate-50 rounded-2xl">
-                    <div class="text-center border-r border-slate-200">
-                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Height</p>
-                        <p id="modalHeight" class="text-base font-bold text-slate-800"></p>
-                    </div>
-                    <div class="text-center border-r border-slate-200">
-                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Weight</p>
-                        <p id="modalWeight" class="text-base font-bold text-slate-800"></p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Weapon</p>
-                        <p id="modalWeapon" class="text-base font-bold text-blue-600"></p>
-                    </div>
+                <div class="grid grid-cols-3 gap-6 mb-8 p-6 bg-slate-50 rounded-2xl text-center">
+                    <div><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">HEIGHT</p><p id="modalHeight" class="font-bold text-slate-800"></p></div>
+                    <div class="border-x border-slate-200"><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">WEIGHT</p><p id="modalWeight" class="font-bold text-slate-800"></p></div>
+                    <div><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">WEAPON</p><p id="modalWeapon" class="font-bold text-blue-600"></p></div>
                 </div>
-
-                <div class="space-y-8">
+                <div class="space-y-6">
                     <div>
-                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-3 tracking-widest uppercase flex items-center gap-2">
-                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Personnel Record
-                        </h4>
+                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-2 uppercase flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Personnel Record</h4>
                         <p id="modalHistory" class="text-slate-500 text-sm leading-7"></p>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
-                            <span class="text-[10px] orbitron font-bold text-blue-500 block mb-2">LIKES</span>
-                            <p id="modalLikes" class="text-sm font-semibold text-blue-900"></p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
+                            <span class="text-[10px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
+                            <p id="modalLikes" class="text-xs font-semibold text-blue-900"></p>
                         </div>
-                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                            <span class="text-[10px] orbitron font-bold text-slate-400 block mb-2">DISLIKES</span>
-                            <p id="modalDislikes" class="text-sm font-semibold text-slate-700"></p>
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span>
+                            <p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p>
                         </div>
                     </div>
-
-                    <div id="modalHashtags" class="flex flex-wrap gap-2 pt-4"></div>
+                    <div id="modalHashtags" class="flex flex-wrap gap-2 pt-2"></div>
                 </div>
             </div>
         </div>
@@ -252,113 +229,72 @@
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R4.webp"] }
 ];
 
-    const factionData = {
-        'ASSOC': { title: "헌터 관리 협회", keyword: "협회" },
-        'BLUE': { title: "청룡", keyword: "청룡" },
-        'WHITE': { title: "백야", keyword: "백야" },
-        'INDIE': { title: "무소속/기타", keyword: ["무소속", "UNKNOWN"] }
-    };
+const factionData = {
+            'ASSOC': { title: "협회", keyword: "협회" },
+            'BLUE': { title: "청룡", keyword: "청룡" },
+            'WHITE': { title: "백야", keyword: "백야" },
+            'INDIE': { title: "기타", keyword: ["무소속", "UNKNOWN"] }
+        };
 
-    function switchMainTab(tabId) {
-        document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        
-        document.getElementById(`tab-${tabId}`).classList.add('active');
-        document.getElementById(`section-${tabId}`).classList.add('active');
-        
-        if(tabId === 'factions') {
-            // 팩션 탭 클릭 시 첫 번째 카테고리(협회) 자동 렌더링
-            renderFaction('ASSOC');
-        }
-    }
-
-    function renderFaction(factionKey) {
-        // 버튼 활성화 표시
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(`btn-${factionKey}`).classList.add('active');
-
-        const info = factionData[factionKey];
-        const grid = document.getElementById('characterGrid');
-        
-        let filtered;
-        if (Array.isArray(info.keyword)) {
-            filtered = characters.filter(char => info.keyword.includes(char.faction));
-        } else {
-            filtered = characters.filter(char => char.faction.includes(info.keyword));
+        function switchMainTab(tabId) {
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            document.getElementById(`section-${tabId}`).classList.add('active');
+            if(tabId === 'factions') renderFaction('ASSOC');
         }
 
-        grid.innerHTML = filtered.map(char => {
-            // 원본 배열에서의 index를 찾아 전달 (모달 오픈용)
-            const globalIdx = characters.findIndex(c => c.idCode === char.idCode);
-            return `
-                <div class="sys-card p-2 cursor-pointer group" onclick="openModal(${globalIdx})">
-                    <div class="overflow-hidden rounded-lg mb-2 bg-slate-100 aspect-[3/4]">
-                        <img src="${char.images[0]}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    </div>
-                    <div class="p-1">
-                        <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
-                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
+        function renderFaction(factionKey) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${factionKey}`).classList.add('active');
+            const info = factionData[factionKey];
+            const grid = document.getElementById('characterGrid');
+            const filtered = characters.filter(char => Array.isArray(info.keyword) ? info.keyword.includes(char.faction) : char.faction.includes(info.keyword));
+            
+            grid.innerHTML = filtered.map(char => {
+                const globalIdx = characters.findIndex(c => c.idCode === char.idCode);
+                const isSRank = char.rank.includes('S');
+                return `
+                    <div class="sys-card cursor-pointer group" onclick="openModal(${globalIdx})">
+                        <div class="card-rank-tag orbitron font-bold ${isSRank ? 'text-blue-400' : 'text-slate-300'}">${char.rank}</div>
+                        <div class="card-img-wrap"><img src="${char.images[0]}" class="group-hover:scale-110" loading="lazy"></div>
+                        <div class="card-info">
+                            <p class="text-[9px] orbitron font-black text-slate-400 uppercase mb-0.5">${char.faction}</p>
+                            <h3 class="text-sm font-bold text-slate-900 leading-none">${char.name}</h3>
+                            <p class="text-[10px] text-slate-500 mt-1 truncate font-medium">${char.job}</p>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
 
-    function openModal(index) {
-        const char = characters[index];
-        if(!char) return;
+        function openModal(index) {
+            const char = characters[index];
+            document.getElementById('modalMainImg').src = char.images[0];
+            document.getElementById('modalRank').innerText = char.rank;
+            document.getElementById('modalFaction').innerText = char.faction;
+            document.getElementById('modalName').innerText = char.name;
+            document.getElementById('modalAge').innerText = char.age + " AGE";
+            document.getElementById('modalQuote').innerText = `"${char.quote}"`;
+            document.getElementById('modalWeapon').innerText = char.weapon;
+            document.getElementById('modalHeight').innerText = char.height;
+            document.getElementById('modalWeight').innerText = char.weight;
+            document.getElementById('modalHistory').innerText = char.history;
+            document.getElementById('modalLikes').innerText = char.likes;
+            document.getElementById('modalDislikes').innerText = char.dislikes;
+            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`).join('');
+            document.getElementById('thumbNav').innerHTML = char.images.map((img, i) => `<img src="${img}" onclick="changeModalImage(this, '${img}')" class="w-14 h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">`).join('');
+            document.getElementById('charModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
-        // 데이터 매핑
-        document.getElementById('modalMainImg').src = char.images[0];
-        document.getElementById('modalRank').innerText = char.rank;
-        document.getElementById('modalFaction').innerText = char.faction;
-        document.getElementById('modalName').innerText = char.name;
-        document.getElementById('modalAge').innerText = char.age + " AGE";
-        document.getElementById('modalQuote').innerText = `"${char.quote}"`;
-        document.getElementById('modalWeapon').innerText = char.weapon;
-        document.getElementById('modalHeight').innerText = char.height;
-        document.getElementById('modalWeight').innerText = char.weight;
-        document.getElementById('modalHistory').innerText = char.history;
-        document.getElementById('modalLikes').innerText = char.likes;
-        document.getElementById('modalDislikes').innerText = char.dislikes;
+        function changeModalImage(el, imgSrc) {
+            document.getElementById('modalMainImg').src = imgSrc;
+            document.querySelectorAll('#thumbNav img').forEach(t => { t.classList.remove('ring-2', 'ring-blue-600'); t.classList.add('opacity-60'); });
+            el.classList.add('ring-2', 'ring-blue-600'); el.classList.remove('opacity-60');
+        }
 
-        // 해시태그 생성
-        document.getElementById('modalHashtags').innerHTML = char.hashtags
-            .map(tag => `<span class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`)
-            .join('');
-
-        // 썸네일 네비게이션 생성
-        const thumbNav = document.getElementById('thumbNav');
-        thumbNav.innerHTML = char.images.map((img, i) => `
-            <img src="${img}" 
-                 onclick="changeModalImage(this, '${img}')" 
-                 class="w-14 h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">
-        `).join('');
-
-        document.getElementById('charModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    }
-
-    // 모달 내 이미지 교체 함수
-    function changeModalImage(el, imgSrc) {
-        document.getElementById('modalMainImg').src = imgSrc;
-        // 모든 썸네일 투명도 조절 및 현재 선택 강조
-        const thumbs = document.querySelectorAll('#thumbNav img');
-        thumbs.forEach(t => {
-            t.classList.remove('ring-2', 'ring-blue-600');
-            t.classList.add('opacity-60');
-        });
-        el.classList.add('ring-2', 'ring-blue-600');
-        el.classList.remove('opacity-60');
-    }
-
-    function closeModal() {
-        document.getElementById('charModal').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    }
-
-    // ESC 키로 모달 닫기 추가
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") closeModal();
-    });
-</script>
+        function closeModal() { document.getElementById('charModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
+    </script>
+</body>
+</html>
