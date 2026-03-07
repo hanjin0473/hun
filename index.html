@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HUNTER ARCHIVE</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -14,41 +14,50 @@
             font-family: 'Pretendard', sans-serif;
             background-image: linear-gradient(#f1f5f9 1px, transparent 1px), linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
             background-size: 30px 30px;
+            word-break: keep-all;
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
         .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; white-space: nowrap; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
-        .filter-btn { border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 16px; border-radius: 99px; font-size: 11px; font-weight: 600; transition: all 0.2s; }
+        .filter-btn { border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 14px; border-radius: 99px; font-size: 10px; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
         .filter-btn.active { background: var(--sys-blue); color: white; border-color: var(--sys-blue); box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2); }
         .content-section { display: none; animation: fadeIn 0.4s ease-out; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; border-radius: 12px; position: relative; }
-        .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 132, 255, 0.1); }
-        .card-img-wrap { position: relative; width: 100%; aspect-ratio: 3 / 4.2; overflow: hidden; border-radius: 14px 14px 0 0; background: #f8fafc; }
+        .card-img-wrap { position: relative; width: 100%; aspect-ratio: 3 / 4.2; overflow: hidden; background: #f8fafc; }
         .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-        .card-info { padding: 12px 10px; background: white; }
-        .card-rank-tag { position: absolute; top: 8px; left: 8px; z-index: 10; backdrop-filter: blur(4px); background: rgba(30, 41, 59, 0.7); color: white; padding: 2px 8px; border-radius: 6px; font-size: 10px; }
-        .gate-card { border-left: 4px solid var(--sys-blue); background: #f8fafc; padding: 1.25rem; border-radius: 0.75rem; }
+        .card-rank-tag { position: absolute; top: 6px; left: 6px; z-index: 10; backdrop-filter: blur(4px); background: rgba(30, 41, 59, 0.7); color: white; padding: 1px 6px; border-radius: 4px; font-size: 9px; }
         .rank-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-family: 'Orbitron'; }
-        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        #charModal { backdrop-filter: blur(8px); }
-        .modal-container { max-height: 90vh; width: 95%; max-width: 1100px; }
+        
+        /* Mobile Specific Modal */
+        #charModal { backdrop-filter: blur(12px); padding: 0; }
+        .modal-container { 
+            max-height: 100vh; 
+            width: 100%; 
+            max-width: 1100px; 
+            border-radius: 0;
+        }
+        @media (min-width: 768px) {
+            #charModal { padding: 1rem; }
+            .modal-container { border-radius: 1.5rem; max-height: 90vh; width: 95%; }
+        }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
-    <header class="max-w-7xl mx-auto mb-10 border-b-2 border-slate-900 pb-4">
-        <div class="flex justify-between items-end mb-6">
-            <h1 class="orbitron text-xl md:text-3xl font-black italic tracking-tighter text-slate-900">HUNTER <span class="text-blue-600">ARCHIVE</span></h1>
+    <header class="max-w-7xl mx-auto mb-6 md:mb-10 border-b-2 border-slate-900 pb-4">
+        <div class="flex justify-between items-end mb-4 md:mb-6">
+            <h1 class="orbitron text-lg md:text-3xl font-black italic tracking-tighter text-slate-900">HUNTER <span class="text-blue-600">ARCHIVE</span></h1>
             <div class="flex flex-col items-end">
-                <span class="orbitron text-[10px] text-blue-500 font-bold animate-pulse">● SYSTEM ACCESS GRANTED</span>
-                <span class="text-[9px] text-slate-400 orbitron">V.2.6_MARCH</span>
+                <span class="orbitron text-[8px] md:text-[10px] text-blue-500 font-bold animate-pulse">● SYSTEM ACCESS</span>
+                <span class="text-[8px] text-slate-400 orbitron">V.2.6_M</span>
             </div>
         </div>
-        <nav class="flex gap-8 md:gap-12 orbitron text-[11px] md:text-sm tracking-widest pb-2">
+        <nav class="flex gap-6 md:gap-12 orbitron text-[10px] md:text-sm tracking-widest pb-1 overflow-x-auto custom-scroll">
             <button onclick="switchMainTab('world')" id="tab-world" class="tab-btn active uppercase">World View</button>
             <button onclick="switchMainTab('factions')" id="tab-factions" class="tab-btn uppercase">Faction Archive</button>
         </nav>
@@ -56,83 +65,87 @@
 
     <div class="max-w-7xl mx-auto">
         <main id="section-world" class="content-section active">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-8">
-                    <section class="bg-slate-900 text-white p-8 rounded-3xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 orbitron text-6xl font-black opacity-5 uppercase select-none">Origin</div>
-                        <h2 class="orbitron text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
-                        <div class="space-y-5 text-slate-300 text-sm md:text-base leading-relaxed">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="lg:col-span-2 space-y-6 md:space-y-8">
+                    <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 orbitron text-4xl md:text-6xl font-black opacity-5 uppercase select-none">Origin</div>
+                        <h2 class="orbitron text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
+                        <div class="space-y-4 text-slate-300 text-xs md:text-base leading-relaxed">
                             <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
                             <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 에너지는 심장 부근의 '마석'에서 기인합니다.</p>
                         </div>
                     </section>
-                    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="gate-card"><h4 class="font-bold text-slate-800 text-sm mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">마물이 유출되는 일반적인 통로.</p></div>
-                        <div class="gate-card border-l-red-500 bg-red-50"><h4 class="font-bold text-red-700 text-sm mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">마물이 현실로 쏟아져 나오는 상태.</p></div>
-                        <div class="gate-card border-l-purple-500 bg-purple-50"><h4 class="font-bold text-purple-700 text-sm mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">예측 불가능한 특수 구역.</p></div>
+                    <section class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-sm">
+                        <div class="border-l-4 border-blue-500 bg-white p-4 rounded-xl shadow-sm"><h4 class="font-bold text-slate-800 mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">마물이 유출되는 일반적인 통로.</p></div>
+                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-red-700 mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">마물이 현실로 쏟아져 나오는 상태.</p></div>
+                        <div class="border-l-4 border-purple-500 bg-purple-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-purple-700 mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">예측 불가능한 특수 구역.</p></div>
                     </section>
                 </div>
-                <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm h-fit">
-                    <h2 class="orbitron text-sm font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
-                    <ul class="space-y-5">
-                        <li class="flex gap-4"><span class="rank-badge bg-red-500 text-white shrink-0 h-fit">S</span><div><p class="text-xs font-bold text-slate-800">국가 전략급 무력</p></div></li>
-                        <li class="flex gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0 h-fit">A-B</span><div><p class="text-xs font-bold text-slate-800">숙련된 전투 요원</p></div></li>
-                        <li class="flex gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0 h-fit">C-D</span><div><p class="text-xs font-bold text-slate-800">일반 헌터</p></div></li>
+                <aside class="bg-white border border-slate-200 p-6 rounded-2xl md:rounded-3xl shadow-sm h-fit">
+                    <h2 class="orbitron text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4"><span class="rank-badge bg-red-500 text-white shrink-0">S</span><p class="text-[11px] md:text-xs font-bold text-slate-800">국가 전략급 무력</p></li>
+                        <li class="flex items-center gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0">A-B</span><p class="text-[11px] md:text-xs font-bold text-slate-800">숙련된 전투 요원</p></li>
+                        <li class="flex items-center gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0">C-D</span><p class="text-[11px] md:text-xs font-bold text-slate-800">일반 헌터 요원</p></li>
                     </ul>
                 </aside>
             </div>
         </main>
 
         <main id="section-factions" class="content-section">
-            <div class="flex gap-2 overflow-x-auto pb-6 mb-4 custom-scroll">
+            <div class="flex gap-2 overflow-x-auto pb-4 mb-4 custom-scroll sticky top-0 z-20 bg-white/80 backdrop-blur-sm -mx-4 px-4 pt-2">
                 <button onclick="renderFaction('ASSOC')" class="filter-btn active orbitron" id="btn-ASSOC">ASSOCIATION</button>
                 <button onclick="renderFaction('BLUE')" class="filter-btn orbitron" id="btn-BLUE">BLUE DRAGON</button>
                 <button onclick="renderFaction('WHITE')" class="filter-btn orbitron" id="btn-WHITE">WHITE NIGHT</button>
-                <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDEPENDENT</button>
+                <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDIE</button>
             </div>
-            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5"></div>
+            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5"></div>
         </main>
     </div>
 
-    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-slate-900/80">
-        <div class="modal-container relative bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-6 right-8 z-50 text-slate-400 hover:text-blue-600 orbitron text-4xl font-light">×</button>
-            <div class="w-full md:w-2/5 bg-slate-100 p-6 flex flex-col">
-                <div class="flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white shadow-inner mb-4">
+    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-end md:items-center justify-center bg-slate-900/90">
+        <div class="modal-container relative bg-white overflow-hidden flex flex-col md:flex-row shadow-2xl animate-slide-up md:animate-none">
+            <button onclick="closeModal()" class="absolute top-4 right-5 md:top-6 md:right-8 z-[1001] text-slate-400 hover:text-blue-600 orbitron text-3xl md:4xl font-light">×</button>
+            
+            <div class="w-full md:w-2/5 bg-slate-100 p-4 md:p-6 flex flex-col shrink-0">
+                <div class="flex-1 flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl bg-white shadow-inner mb-3 md:mb-4">
                     <img id="modalMainImg" src="" class="w-full h-full object-cover">
                 </div>
-                <div id="thumbNav" class="flex gap-3 overflow-x-auto py-2 custom-scroll"></div>
+                <div id="thumbNav" class="flex gap-2 md:gap-3 overflow-x-auto py-1 custom-scroll"></div>
             </div>
-            <div class="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scroll flex flex-col">
-                <div class="mb-8">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span id="modalRank" class="rank-badge bg-blue-600 text-white text-xs px-3 py-1"></span>
-                        <span id="modalFaction" class="text-xs font-bold text-blue-500 orbitron tracking-widest"></span>
+
+            <div class="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto custom-scroll bg-white">
+                <div class="mb-6 md:mb-8">
+                    <div class="flex items-center gap-3 mb-2 md:mb-3">
+                        <span id="modalRank" class="rank-badge bg-blue-600 text-white text-[10px] px-2 py-0.5"></span>
+                        <span id="modalFaction" class="text-[10px] font-bold text-blue-500 orbitron tracking-widest"></span>
                     </div>
-                    <div class="flex items-baseline gap-4 mb-2">
-                        <h2 id="modalName" class="text-4xl font-black text-slate-900 tracking-tight"></h2>
-                        <span id="modalAge" class="text-lg font-bold text-slate-400 orbitron"></span>
+                    <div class="flex items-baseline gap-3 mb-4">
+                        <h2 id="modalName" class="text-2xl md:text-4xl font-black text-slate-900"></h2>
+                        <span id="modalAge" class="text-sm md:text-lg font-bold text-slate-400 orbitron"></span>
                     </div>
-                    <p id="modalQuote" class="text-lg text-slate-600 italic font-medium leading-relaxed mt-4 border-l-4 border-blue-500 pl-6"></p>
+                    <p id="modalQuote" class="text-sm md:text-lg text-slate-600 italic font-medium border-l-4 border-blue-500 pl-4 md:pl-6"></p>
                 </div>
-                <div class="grid grid-cols-3 gap-6 mb-8 p-6 bg-slate-50 rounded-2xl text-center">
-                    <div><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">HEIGHT</p><p id="modalHeight" class="font-bold text-slate-800"></p></div>
-                    <div class="border-x border-slate-200"><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">WEIGHT</p><p id="modalWeight" class="font-bold text-slate-800"></p></div>
-                    <div><p class="text-[10px] text-slate-400 orbitron font-bold mb-1">WEAPON</p><p id="modalWeapon" class="font-bold text-blue-600"></p></div>
+
+                <div class="grid grid-cols-3 gap-2 md:gap-6 mb-6 p-4 md:p-6 bg-slate-50 rounded-xl md:rounded-2xl text-center">
+                    <div><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">HEIGHT</p><p id="modalHeight" class="text-xs md:text-base font-bold text-slate-800"></p></div>
+                    <div class="border-x border-slate-200"><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">WEIGHT</p><p id="modalWeight" class="text-xs md:text-base font-bold text-slate-800"></p></div>
+                    <div><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">WEAPON</p><p id="modalWeapon" class="text-xs md:text-base font-bold text-blue-600"></p></div>
                 </div>
-                <div class="space-y-6">
+
+                <div class="space-y-6 pb-6">
                     <div>
-                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-2 uppercase flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Personnel Record</h4>
-                        <p id="modalHistory" class="text-slate-500 text-sm leading-7"></p>
+                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-2 uppercase flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Record</h4>
+                        <p id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-6 md:leading-7"></p>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-blue-50/50 p-4 rounded-2xl border border-blue-100">
-                            <span class="text-[10px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
-                            <p id="modalLikes" class="text-xs font-semibold text-blue-900"></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="bg-blue-50/50 p-3 md:p-4 rounded-xl border border-blue-100">
+                            <span class="text-[9px] orbitron font-bold text-blue-500 block mb-1 uppercase">Likes</span>
+                            <p id="modalLikes" class="text-[11px] md:text-xs font-semibold text-blue-900"></p>
                         </div>
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <span class="text-[10px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span>
-                            <p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p>
+                        <div class="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-100">
+                            <span class="text-[9px] orbitron font-bold text-slate-400 block mb-1 uppercase">Dislikes</span>
+                            <p id="modalDislikes" class="text-[11px] md:text-xs font-semibold text-slate-700"></p>
                         </div>
                     </div>
                     <div id="modalHashtags" class="flex flex-wrap gap-2 pt-2"></div>
@@ -256,12 +269,12 @@ const factionData = {
                 const isSRank = char.rank.includes('S');
                 return `
                     <div class="sys-card cursor-pointer group" onclick="openModal(${globalIdx})">
-                        <div class="card-rank-tag orbitron font-bold ${isSRank ? 'text-blue-400' : 'text-slate-300'}">${char.rank}</div>
-                        <div class="card-img-wrap"><img src="${char.images[0]}" class="group-hover:scale-110" loading="lazy"></div>
-                        <div class="card-info">
-                            <p class="text-[9px] orbitron font-black text-slate-400 uppercase mb-0.5">${char.faction}</p>
-                            <h3 class="text-sm font-bold text-slate-900 leading-none">${char.name}</h3>
-                            <p class="text-[10px] text-slate-500 mt-1 truncate font-medium">${char.job}</p>
+                        <div class="card-rank-tag orbitron font-bold ${isSRank ? 'text-blue-400' : 'text-slate-300'}">${char.rank.replace('RANK ', '')}</div>
+                        <div class="card-img-wrap"><img src="${char.images[0]}" loading="lazy"></div>
+                        <div class="card-info p-3">
+                            <p class="text-[8px] orbitron font-black text-slate-400 uppercase mb-0.5">${char.faction}</p>
+                            <h3 class="text-xs md:text-sm font-bold text-slate-900 leading-none">${char.name}</h3>
+                            <p class="text-[9px] md:text-[10px] text-slate-500 mt-1 truncate font-medium">${char.job}</p>
                         </div>
                     </div>`;
             }).join('');
@@ -281,8 +294,8 @@ const factionData = {
             document.getElementById('modalHistory').innerText = char.history;
             document.getElementById('modalLikes').innerText = char.likes;
             document.getElementById('modalDislikes').innerText = char.dislikes;
-            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`).join('');
-            document.getElementById('thumbNav').innerHTML = char.images.map((img, i) => `<img src="${img}" onclick="changeModalImage(this, '${img}')" class="w-14 h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">`).join('');
+            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 md:px-3 py-1 bg-slate-100 text-slate-500 text-[9px] md:text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`).join('');
+            document.getElementById('thumbNav').innerHTML = char.images.map((img, i) => `<img src="${img}" onclick="changeModalImage(this, '${img}')" class="w-10 h-14 md:w-14 md:h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">`).join('');
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
