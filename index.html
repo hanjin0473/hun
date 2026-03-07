@@ -53,45 +53,51 @@
             </div>
         </div>
         <nav class="flex gap-6 md:gap-12 orbitron text-[10px] md:text-sm tracking-widest pb-1 overflow-x-auto custom-scroll">
-            <button onclick="switchMainTab('prologue')" id="tab-prologue" class="tab-btn active uppercase">Prologue</button>
-            <button onclick="switchMainTab('world')" id="tab-world" class="tab-btn uppercase">World View</button>
-            <button onclick="switchMainTab('factions')" id="tab-factions" class="tab-btn uppercase">Faction Archive</button>
+            <button onclick="switchMainTab('prologue')" id="tab-prologue" class="tab-btn active uppercase">프롤로그</button>
+            <button onclick="switchMainTab('world')" id="tab-world" class="tab-btn uppercase">세계관</button>
+            <button onclick="switchMainTab('factions')" id="tab-factions" class="tab-btn uppercase">각성자 기록소</button>
         </nav>
     </header>
 
-    <div class="max-w-7xl mx-auto">
-        <main id="section-prologue" class="content-section active">
-            <div id="prologue-screen" class="max-w-4xl mx-auto py-6 md:py-12 px-4 space-y-10">
-                <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 aspect-video mb-10">
-                    <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/4.webp" alt="Awakening" class="w-full h-full object-cover">
-                </div>
-            
-                <section class="space-y-8 text-center">
-                    <div class="inline-block px-4 py-1 border border-blue-500 text-blue-500 orbitron text-[10px] font-black tracking-[0.3em] uppercase mb-4">
-                        System Awakened
-                    </div>
-                    <div class="space-y-6">
-                        <p class="text-xl md:text-2xl font-bold italic leading-relaxed text-slate-800">
-                            "모든 것은 그날 시작되었다."
-                        </p>
-                        <p class="text-slate-500 leading-relaxed">
-                            평범했던 일상은 궤도를 벗어났고,<br>
-                            당신은 <span class="text-blue-600 font-bold">에녹</span>에 의해 각성자로 선택되었습니다.
-                        </p>
-                        <p class="text-slate-500">
-                            이제 당신 앞에는 헌터로서의<br>
-                            새로운 세계와 운명이 펼쳐집니다.
-                        </p>
-                    </div>
-                </section>
-            
-                <div class="text-center pt-10">
-                    <button onclick="startArchive()" class="orbitron px-12 py-5 bg-slate-900 text-white rounded-2xl font-black tracking-widest text-sm hover:bg-blue-600 transition-all shadow-xl">
-                        REGISTER AS HUNTER
-                    </button>
-                    <p class="mt-6 text-[10px] text-slate-400 orbitron tracking-widest uppercase opacity-60">Accept the Fate to Access Archive</p>
-                </div>
+<div class="max-w-7xl mx-auto">
+    <main id="section-prologue" class="content-section active">
+        <div id="prologue-screen" class="max-w-4xl mx-auto py-6 md:py-12 px-4 space-y-10">
+            <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 aspect-video mb-10">
+                <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/4.webp" alt="Awakening" class="w-full h-full object-cover">
             </div>
+            
+            <section class="space-y-8 text-center">
+                <div class="inline-block px-4 py-1 border border-red-500 text-red-500 orbitron text-[10px] font-black tracking-[0.3em] uppercase mb-4 animate-pulse">
+                    Anomaly Detected
+                </div>
+                
+                <div class="space-y-6">
+                    <p class="text-xl md:text-2xl font-bold italic leading-relaxed text-slate-800">
+                        "꿈이라고 생각하며 눈을 감았지만,<br>다시 떠도 풍경은 그대로였다."
+                    </p>
+                    <p class="text-slate-500 leading-relaxed">
+                        어젯밤의 온기는 온데간데없고, <br>
+                        축축한 냉기와 사체의 잔향만이 폐부를 찌른다.
+                    </p>
+                    <p class="text-slate-500">
+                        <span class="text-blue-600 font-bold">에녹</span>은 이미 당신의 운명을 확정지었다.<br>
+                        이곳에 발을 들인 이상, 평범한 '어제'로는 돌아갈 수 없다...
+                    </p>
+                </div>
+            </section>
+            
+<div class="text-center pt-10">
+    <button onclick="location.href='[https://share.crack.wrtn.ai/s4bxm5](https://share.crack.wrtn.ai/s4bxm5)'" 
+            class="px-12 py-5 bg-slate-900 text-white rounded-2xl font-black tracking-widest text-sm hover:bg-blue-600 transition-all shadow-xl active:scale-95">
+        눈앞의 현실 받아들이기
+    </button>
+    
+    <p class="mt-6 text-[10px] text-slate-400 orbitron tracking-widest uppercase opacity-60">
+        Step into the distorted reality
+    </p>
+</div>
+    </main>
+</div>
         </main>
 
         <main id="section-world" class="content-section">
@@ -99,7 +105,7 @@
                 <div class="lg:col-span-2 space-y-6 md:space-y-8">
                     <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden">
                         <div class="absolute top-0 right-0 p-4 orbitron text-4xl md:text-6xl font-black opacity-5 uppercase select-none">Origin</div>
-                        <h2 class="orbitron text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
+                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-400 uppercase tracking-widest">세계관 시놉시스</h2>
                         <div class="space-y-4 text-slate-300 text-xs md:text-base leading-relaxed">
                             <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
                             <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 에너지는 심장 부근의 '마석'에서 기인합니다.</p>
@@ -112,7 +118,7 @@
                     </section>
                 </div>
                 <aside class="bg-white border border-slate-200 p-6 rounded-2xl md:rounded-3xl shadow-sm h-fit">
-                    <h2 class="orbitron text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
+                    <h2 class="text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">랭킹 시스템</h2>
                     <ul class="space-y-4">
                         <li class="flex items-center gap-4"><span class="rank-badge bg-red-500 text-white shrink-0">S</span><p class="text-[11px] md:text-xs font-bold text-slate-800">국가 전략급 무력</p></li>
                         <li class="flex items-center gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0">A-B</span><p class="text-[11px] md:text-xs font-bold text-slate-800">숙련된 전투 요원</p></li>
@@ -124,10 +130,10 @@
 
         <main id="section-factions" class="content-section">
             <div class="flex gap-2 overflow-x-auto pb-4 mb-4 custom-scroll sticky top-0 z-20 bg-white/80 backdrop-blur-sm -mx-4 px-4 pt-2">
-                <button onclick="renderFaction('ASSOC')" class="filter-btn active orbitron" id="btn-ASSOC">ASSOCIATION</button>
-                <button onclick="renderFaction('BLUE')" class="filter-btn orbitron" id="btn-BLUE">BLUE DRAGON</button>
-                <button onclick="renderFaction('WHITE')" class="filter-btn orbitron" id="btn-WHITE">WHITE NIGHT</button>
-                <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDIE</button>
+                <button onclick="renderFaction('ASSOC')" class="filter-btn active" id="btn-ASSOC">헌터 협회</button>
+                <button onclick="renderFaction('BLUE')" class="filter-btn" id="btn-BLUE">청룡 길드</button>
+                <button onclick="renderFaction('WHITE')" class="filter-btn" id="btn-WHITE">백야 길드</button>
+                <button onclick="renderFaction('INDIE')" class="filter-btn" id="btn-INDIE">기타/무소속</button>
             </div>
             <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5"></div>
         </main>
@@ -291,10 +297,8 @@ const factionData = {
 
         // Prologue Button Function
         function startArchive() {
-            alert("시스템: 헌터 등록이 완료되었습니다. 아카이브 접근 권한을 획득합니다.");
-            switchMainTab('factions');
-            // 만약 캐릭터 채팅 링크로 바로 보내고 싶다면 아래 주석을 해제하세요.
-            // window.location.href = "당신의_캐릭터_채팅_링크_주소";
+            alert("시스템: 헌터 등록이 승인되었습니다. 기록소로 이동합니다.");
+            window.location.href = "https://share.crack.wrtn.ai/s4bxm5";
         }
 
         function renderFaction(factionKey) {
