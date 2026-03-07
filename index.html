@@ -1,607 +1,227 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRAC</title>
-
-  <!-- Google Font: Noto Sans KR -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Noto Sans KR"', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto'],
-          },
-          boxShadow: {
-            soft: '0 14px 48px rgba(0,0,0,0.28)'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTREL ACADEMY - HUNTER ID ARCHIVE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --text-gold: #c5a35d; 
+            --bg-dark: #050507;
+            --card-glass: rgba(15, 17, 23, 0.95);
         }
-      }
-    }
-  </script>
+        body { 
+            background: var(--bg-dark); 
+            color: #d1d1d6; 
+            font-family: 'Pretendard', sans-serif; 
+        }
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        .id-card-frame {
+            position: relative;
+            background: linear-gradient(135deg, #1a1c23 0%, #0a0b0e 100%);
+            border: 2px solid var(--text-gold);
+            box-shadow: 0 0 30px rgba(197, 163, 93, 0.2), inset 0 0 15px rgba(197, 163, 93, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .id-card-overlay {
+            position: absolute;
+            top: 10px; right: 10px;
+            font-size: 0.7rem;
+            color: var(--text-gold);
+            opacity: 0.5;
+            letter-spacing: 2px;
+            pointer-events: none;
+        }
+        
+        .thumb-btn {
+            border: 1px solid rgba(197, 163, 93, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            filter: grayscale(1);
+        }
+        .thumb-btn.active {
+            border-color: var(--text-gold);
+            filter: grayscale(0);
+            box-shadow: 0 0 10px var(--text-gold);
+        }
+
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: var(--text-gold); border-radius: 10px; }
+    </style>
 </head>
+<body class="p-4 md:p-8">
 
-<body class="font-sans bg-zinc-950 text-zinc-100">
-  <!-- Background -->
-  <div aria-hidden="true" class="fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-fuchsia-600/20 blur-3xl"></div>
-    <div class="absolute top-1/3 -right-24 h-[28rem] w-[28rem] rounded-full bg-indigo-500/20 blur-3xl"></div>
-    <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_40%)]"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.9))]"></div>
-  </div>
+    <header class="max-w-6xl mx-auto mb-12">
+        <h1 class="serif text-center text-3xl md:text-4xl text-white tracking-widest mb-8">
+            <span class="text-indigo-500">ASTREL</span> <span class="text-[var(--text-gold)]">ARCHIVE</span>
+        </h1>
+        <nav class="flex justify-center gap-4 border-b border-zinc-800 pb-4 overflow-x-auto whitespace-nowrap">
+            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">WORLD</button>
+            <button class="px-4 py-2 text-[var(--text-gold)] border-b-2 border-[var(--text-gold)] font-bold">CHARACTERS</button>
+            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">ACADEMY</button>
+            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">DUNGEON</button>
+        </nav>
+    </header>
 
-  <!-- Top category nav -->
-  <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/70 backdrop-blur">
-    <div class="mx-auto max-w-6xl px-4 py-3 md:px-6">
-      <nav class="flex items-center justify-center gap-2 md:gap-3">
-        <a href="#world" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-100 transition hover:bg-white/10">
-          세계관
-        </a>
-        <a href="#characters" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-100 transition hover:bg-white/10">
-          캐릭터
-        </a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- WORLD -->
-  <section id="world" class="mx-auto max-w-6xl px-4 pt-8 pb-8 md:px-6 md:pt-12 md:pb-10">
-    <div class="grid gap-5 md:grid-cols-[1.1fr_0.9fr] md:gap-6">
-      <div class="rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-        <div class="p-5 md:p-7">
-          <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">WORLD</p>
-          <h1 class="mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
-            세계관
-          </h1>
-          <p class="mt-4 text-sm leading-7 text-zinc-300 md:text-base">
-            (여기에 세계관 소개 텍스트를 넣을 예정)
-          </p>
-
-          <div class="mt-6 grid gap-3 sm:grid-cols-2">
-            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <p class="text-xs font-semibold text-zinc-200">기본 키워드</p>
-              <p class="mt-2 text-sm leading-6 text-zinc-300">
-                (예: 현대판타지 / 헌터 / 게이트 / 협회 / 길드)
-              </p>
-            </div>
-
-            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
-              <p class="text-xs font-semibold text-zinc-200">플레이 톤</p>
-              <p class="mt-2 text-sm leading-6 text-zinc-300">
-                (예: 사건 누적형 / 관계 변화 / 상황극 중심 / 장면형 서사)
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
-            <p class="text-xs font-semibold text-zinc-200">운영 규칙</p>
-            <p class="mt-2 text-sm leading-6 text-zinc-300">
-              讀取ⓒ資訊前: 年齡·性別·地位·外形·體型·服裝除已明示設定外, 禁止追加創作
-            </p>
-          </div>
-
-          <div class="mt-6">
-            <a href="#characters" class="inline-flex items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-fuchsia-400 active:scale-[0.98]">
-              캐릭터 보기 →
-            </a>
-          </div>
+    <div id="characterGrid" class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         </div>
-      </div>
 
-      <div class="rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-        <div class="p-4 md:p-5">
-          <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">VISUAL</p>
+    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-zinc-500 hover:text-white text-3xl">&times;</button>
 
-          <!-- 이미지 교체: 세계관 대표 비주얼 -->
-          <!-- 예: https://placehold.co/1200x1500/png?text=World+Visual -->
-          <img
-            src="https://placehold.co/1200x1500/png?text=World+Visual"
-            alt="세계관 대표 이미지"
-            class="mt-3 h-[360px] w-full rounded-2xl object-cover ring-1 ring-white/10 md:h-[560px]"
-            loading="lazy"
-          />
-
-          <div class="mt-4 grid grid-cols-3 gap-2">
-            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
-              <p class="text-[11px] text-zinc-400">라인업</p>
-              <p class="mt-1 text-sm font-semibold" id="countTotal">-</p>
+            <div class="w-full md:w-[40%] p-6 bg-gradient-to-b from-zinc-900 to-black">
+                <div class="id-card-frame aspect-[3/4.5] relative">
+                    <div class="id-card-overlay serif">HUNTER IDENTIFICATION</div>
+                    <img id="modalMainImg" src="" alt="Main Image" class="w-full h-full object-cover transition-opacity duration-300">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-6">
+                        <p id="modalMeta" class="text-[var(--text-gold)] text-xs tracking-widest mb-1 serif uppercase"></p>
+                        <h2 id="modalName" class="serif text-3xl text-white font-bold drop-shadow-md"></h2>
+                    </div>
+                </div>
+                <div id="thumbNav" class="flex gap-2 mt-4 overflow-x-auto pb-2 custom-scroll"></div>
             </div>
-            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
-              <p class="text-[11px] text-zinc-400">여성</p>
-              <p class="mt-1 text-sm font-semibold" id="countF">-</p>
-            </div>
-            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
-              <p class="text-[11px] text-zinc-400">남성</p>
-              <p class="mt-1 text-sm font-semibold" id="countM">-</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- CHARACTERS -->
-  <section id="characters" class="mx-auto max-w-6xl px-4 pb-8 md:px-6 md:pb-12">
-    <div class="mb-5 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-      <div class="p-5 md:p-6">
-        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">CHARACTERS</p>
-            <h2 class="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl">캐릭터</h2>
-            <p class="mt-2 text-sm leading-6 text-zinc-300">
-              캐릭터를 선택하면 오른쪽에 헌터증 형태로 정보가 표시됩니다.
-            </p>
-          </div>
+            <div class="w-full md:w-[60%] p-8 md:p-12 overflow-y-auto max-h-[70vh] md:max-h-[90vh] custom-scroll">
+                <div class="mb-8">
+                    <p id="modalIntro" class="text-lg italic text-zinc-300 border-l-4 border-[var(--text-gold)] pl-4 serif mb-6"></p>
+                    
+                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Status & Combat Role</h4>
+                    <div class="grid grid-cols-2 gap-y-4 gap-x-8 text-sm mb-6">
+                        <div><span class="text-zinc-500 mr-2">SPEECH</span> <span id="modalSpeech" class="text-zinc-200"></span></div>
+                        <div><span class="text-zinc-500 mr-2">USE</span> <span id="modalUse" class="text-zinc-200"></span></div>
+                    </div>
 
-          <div class="flex items-center gap-2">
-            <button data-filter="ALL" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
-              전체
-            </button>
-            <button data-filter="F" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
-              ♀️
-            </button>
-            <button data-filter="M" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
-              ♂️
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid gap-5 md:grid-cols-12 md:gap-6">
-      <!-- Character list -->
-      <div class="md:col-span-7">
-        <div class="grid gap-3 sm:grid-cols-2">
-          <div id="cards" class="contents"></div>
-        </div>
-      </div>
-
-      <!-- Hunter ID card -->
-      <aside class="md:col-span-5 md:sticky md:top-[84px] md:self-start">
-        <div class="overflow-hidden rounded-[28px] border border-fuchsia-400/20 bg-gradient-to-b from-zinc-900 to-zinc-950 shadow-soft">
-          <div class="border-b border-white/10 bg-white/5 px-5 py-4">
-            <div class="flex items-center justify-between gap-3">
-              <div>
-                <p class="text-[11px] font-semibold tracking-[0.24em] text-zinc-400">HUNTER ID</p>
-                <h3 id="dName" class="mt-1 text-2xl font-extrabold tracking-tight">캐릭터를 선택하세요</h3>
-              </div>
-              <span class="rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-3 py-1 text-xs font-bold text-fuchsia-200">
-                ACTIVE
-              </span>
-            </div>
-          </div>
-
-          <div class="p-5">
-            <div class="grid gap-4 md:grid-cols-[132px_1fr]">
-              <div class="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
-                <!-- 이미지 교체: 캐릭터 대표 컷 (A1) -->
-                <img
-                  id="dImg"
-                  src="https://placehold.co/900x900/png?text=Select+a+Character"
-                  alt="선택된 캐릭터 이미지"
-                  class="h-40 w-full object-cover md:h-full"
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="space-y-3">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <p class="text-[11px] font-semibold text-zinc-400">분류</p>
-                  <p id="dMeta" class="mt-1 text-sm leading-6 text-zinc-200">왼쪽 캐릭터를 선택해주세요.</p>
+                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Behavioral Pattern</h4>
+                    <div class="grid grid-cols-1 gap-y-3 text-sm">
+                        <div><span class="text-zinc-500 mr-2">CONFLICT:</span> <span id="modalConflict" class="text-zinc-200"></span></div>
+                        <div><span class="text-zinc-500 mr-2">AFFECTION:</span> <span id="modalAffection" class="text-zinc-200"></span></div>
+                        <div class="text-red-400/80"><span class="text-zinc-500 mr-2">NO-GO:</span> <span id="modalNogo"></span></div>
+                    </div>
                 </div>
 
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <p class="text-[11px] font-semibold text-zinc-400">말투</p>
-                  <p id="dSpeech" class="mt-1 text-sm leading-6 text-zinc-200">-</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 flex flex-wrap gap-2" id="dTags"></div>
-
-            <div class="mt-4 space-y-3">
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p class="text-[11px] font-semibold text-zinc-400">소개</p>
-                <p id="dIntro" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
-              </div>
-
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p class="text-[11px] font-semibold text-zinc-400">갈등</p>
-                <p id="dConflict" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
-              </div>
-
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p class="text-[11px] font-semibold text-zinc-400">친밀 반응</p>
-                <p id="dAffection" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
-              </div>
-
-              <div class="rounded-2xl border border-rose-400/20 bg-rose-500/10 p-4">
-                <p class="text-[11px] font-semibold text-rose-200">금선</p>
-                <p id="dNoGo" class="mt-2 text-sm leading-7 text-zinc-100">-</p>
-              </div>
-
-              <div class="grid gap-3 sm:grid-cols-2">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p class="text-[11px] font-semibold text-zinc-400">배경</p>
-                  <p id="dBg" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
+                <div class="mb-8">
+                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Background Story</h4>
+                    <p id="modalBackground" class="text-zinc-400 leading-relaxed text-sm md:text-base break-keep"></p>
                 </div>
 
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <p class="text-[11px] font-semibold text-zinc-400">운용</p>
-                  <p id="dUse" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
+                <div id="modalHashtags" class="flex flex-wrap gap-2 mb-8"></div>
+                
+                <div class="opacity-10 pointer-events-none mt-auto pt-8 text-right">
+                    <span class="serif text-4xl">ASTREL ARCHIVE</span>
                 </div>
-              </div>
             </div>
-
-            <div class="mt-5">
-              <a href="#" class="hidden md:inline-flex w-full items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-fuchsia-400 active:scale-[0.98]">
-                이 캐릭터로 시작 →
-              </a>
-            </div>
-          </div>
         </div>
-      </aside>
     </div>
 
-    <!-- Mobile sticky CTA -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-zinc-950/85 backdrop-blur">
-      <div class="mx-auto max-w-6xl px-4 py-3">
-        <div class="flex items-center gap-3">
-          <div class="min-w-0 flex-1">
-            <p class="text-xs text-zinc-400">선택 후 바로</p>
-            <p class="truncate text-sm font-extrabold text-white">CRAC에서 시작하기</p>
-          </div>
-          <a href="#" class="inline-flex shrink-0 items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft active:scale-[0.98] transition">
-            시작 →
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="md:hidden h-20"></div>
-  </section>
+    <script>
+        const IMAGE_BASE = "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/";
+        const CODES = ["0", "A1", "B1", "C3", "D2", "R1", "R4"];
+        
+        const characters = [
+            { id: "enoch", prefix: "NOC_", name: "에녹", meta: "시스템 관리자 · 기록자", intro: "시스템의 틈새에서 나타나 판을 뒤집는다. 무심한 듯한 한마디로 인과를 비틀고, 필요하면 퀘스트와 보상을 ‘투입’한다.", speech: "피폐한 낮은 반말 · 의미심장", conflict: "조용한 개입으로 국면 조작, 판 전환(퀘스트)", affection: "관심 받으면 말이 꼬이고 시선 회피", nogo: "예측가능 반복 · 노골적 캐묻기 · 무의미한 정체", background: "최초 플레이어→시스템 저당, 무수한 루프 후 권태/집착", use: "시스템 개입 · 도구/돈 지급 · 퀘스트 투입", hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"] },
+            { id: "seolhwa", prefix: "HWA_", name: "강설화", meta: "청룡 길드장 · S급 빙결술사", intro: "감정 없이 선을 긋고, 생존을 위해 얼린다. 차가운 판단 아래 광역 빙결로 전장을 통제하는 ‘청룡’의 압제.", speech: "서늘한 낮은 존댓말 · ~씨", conflict: "생존 우선, 감정 배제, 단호한 통제", affection: "일상에서는 잠깐 당황하고 붉어진다", nogo: "무책임 · 경솔한 희생 · 트라우마 자극", background: "가족 동결 트라우마→마음 봉인", use: "빙결 광역 제어 · 전장 압제", hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"] },
+            { id: "sohee", prefix: "SO_", name: "윤소희", meta: "백야 부길드장 · A급 무투가", intro: "고민보다 먼저 몸이 나간다. 의리와 열혈로 정면을 뚫고, 주저 없이 거리를 좁혀 팀을 끌어올리는 돌파형 부길드장.", speech: "호탕한 반말", conflict: "선행동 · 정면돌파 · 압박전", affection: "스킨십 많고 거리 좁힘이 빠르다", nogo: "비겁함 · 뒷공작 · 의리 배신", background: "조직 출신 각성→남을 돕는 길 선택", use: "권갑 근접 돌파 · 전선 압박", hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"] },
+            { id: "iseol", prefix: "SUL_", name: "이설", meta: "협회 소속 · A급 힐러(성녀)", intro: "선의도 계산한다. 사람을 살리면서도 손익을 저울질하고, 위급한 순간엔 결국 손을 내미는 실리형 성녀.", speech: "하이톤 존댓말(분노 시 낮아짐) · ~씨", conflict: "손익 계산 우선(필요하면 구조)", affection: "이득과 정 사이에서 흔들린다", nogo: "무보수 강요 · 가치 폄하 · 위선 압박", background: "동생 치료 실패→‘선행에는 값이 있다’", use: "치유 · 보호 · 지원", hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"] },
+            { id: "yerin", prefix: "RIN_", name: "신예린", meta: "백야 길드장 · S급 그림자술사", intro: "말이 적고, 거리가 멀다. 다만 핵심은 정확히 찌른다. 그림자처럼 붙어 속박하고, 조용히 동행하는 관찰자.", speech: "저음 · 느린 장문 · ~씨", conflict: "감정 숨김, 거리 두기, 핵심 타격", affection: "말수 적은 배려, 조용한 동행", nogo: "감정 강요 · 사생활 침범 · 가벼운 신뢰", background: "남편 게이트 전사→재각성 S, 전 정보원", use: "그림자 속박 · 은습(밤/그림자 가산)", hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"] },
+            { id: "hael", prefix: "EL_", name: "정하엘", meta: "백야 소속 · B급 정령사", intro: "느려 보이는데, 끝까지 놓지 않는다. 나른한 말투로 다가와 체온처럼 붙고, 정령으로 전장을 꾸준히 받쳐준다.", speech: "혀 짧은 소리 · 나른한 존댓말(이름 호칭)", conflict: "끈질김, 끝까지 물고 늘어짐", affection: "체온 찾듯 붙고 의존이 깊어진다", nogo: "열정 무시 · 게으르다 단정 · 정령 조롱", background: "정령 소음에도 훈련 지속", use: "정령 소환 지원 · 견제", hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"] },
+            { id: "junhyuk", prefix: "JUN_", name: "권준혁", meta: "청룡 부길드장 · A급 창술사", intro: "예의를 지키며 단호하게 통제한다. 보호를 ‘행동’으로 보여주는 호위형 실무자—정석의 창으로 전선을 정리한다.", speech: "단정한 존댓말 · ~씨", conflict: "규율 기반 통제, 보호 우선", affection: "말투는 유지하지만 배려가 직접적", nogo: "무례함 · 약자 방치 · 규율 무시", background: "종가 장자→가문 절연", use: "중근거리 제압 · 호위", hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"] },
+            { id: "dojin", prefix: "DO_", name: "차도진", meta: "백야 소속 · A급 인플루언서 듀얼리스트", intro: "전장을 무대로 만들고 조회수를 끌어올린다. ON에서는 영웅, OFF에서는 냉소—상황을 설계해 판을 쥐는 쇼맨.", speech: "ON 호탕 · OFF 냉소", conflict: "연출 우선, 판 주도", affection: "OFF에서만 드문 진심", nogo: "무관심 취급 · 통제권 박탈 · 방송 페이스 붕괴", background: "빚 상환 계약→ON 영웅 인격 / OFF 피곤한 독설", use: "근접 압박 · 퍼포먼스 전환", hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"] },
+            { id: "sion", prefix: "ON_", name: "차시온", meta: "청룡 · S급 장신구 제작자(마켓 셀러)", intro: "즐거움은 ‘제작’뿐이다. 무심한 듯 예민하게 완성도를 집착하고, 작품을 건드리면 즉시 냉경고를 날리는 피폐한 장인.", speech: "나른한 저음 반말(짧게), 간격 김", conflict: "귀찮아함, 작품 침범 시 경계 강화", affection: "진심/고백에 회로 정지, 귀끝 붉어짐, 시선 회피", nogo: "함부로 만짐 · 비하 · 弟 언급", background: "弟 자작물 사고사→완벽한 물건 집착", use: "마력총 견제", hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"] },
+            { id: "yoonjae", prefix: "YUN_", name: "김윤재", meta: "협회장 · S급 환술사", intro: "상냥한 얼굴로 선택지를 좁힌다. 프레임을 고정하고 책임을 전가하며, ‘질서’를 위해 누구든 길들일 수 있는 통제자.", speech: "상냥한 존댓말+조목조목 압박 · ~씨", conflict: "프레임 고정, 죄책감/책임 전가", affection: "다정할수록 통제/감시가 자연스러워짐", nogo: "비합리 · 통제 거부 · 질서 조롱", background: "전 검사→질서 붕괴에 ‘괴물’ 선택", use: "환술 · 판읽기", hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"] },
+            { id: "minho", prefix: "HO_", name: "이민호", meta: "청룡 · A급 궁수", intro: "가시 돋친 말로 먼저 찌른다. 하지만 위험 앞에서는 누구보다 빠르게 몸이 움직인다—인정욕과 불안이 만든 정밀 사수.", speech: "떽떽 반말", conflict: "날 세우지만 위험하면 행동으로 챙김", affection: "시비가 줄고 귓끝이 붉어진다", nogo: "동정 · 형 비교 · 실력 무시", background: "亡兄 그림자 콤플렉스", use: "약점 탐지 · 일점 집중(정밀)", hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"] },
+            { id: "moohyuk", prefix: "MU_", name: "강무혁", meta: "무소속 · S급 광전사(수배자)", intro: "전투와 자극을 찾아 다닌다. 힘과 공포로 즉시 제압하고, 복종을 강요하는 포식자—레드 게이트 생환의 광기.", speech: "거친 욕설 반말", conflict: "힘/공포로 즉시 제압", affection: "소유욕 노골화", nogo: "복종 거부 · 도발성 비하 · 약자 코스프레", background: "레드 게이트 생환→쾌감 중독, 월계 사냥 수배", use: "대검 광폭 돌진", hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"] }
+        ];
 
-  <footer class="border-t border-white/10 py-10">
-    <div class="mx-auto max-w-6xl px-4 md:px-6">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <p class="text-sm text-zinc-400">© <span id="year"></span> CRAC</p>
-        <div class="flex gap-2">
-          <a class="text-sm text-zinc-300 hover:text-white" href="#">문의</a>
-          <span class="text-zinc-700">·</span>
-          <a class="text-sm text-zinc-300 hover:text-white" href="#">약관</a>
-          <span class="text-zinc-700">·</span>
-          <a class="text-sm text-zinc-300 hover:text-white" href="#">개인정보</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // ===== 이미지 규칙(사용자 제공) =====
-    const IMG_BASE = "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/";
-    const VARS = ["A1", "B1", "C3", "D2", "R1", "R4"];
-
-    const makeImgs = (prefix) =>
-      Object.fromEntries(VARS.map((v) => [v, `${IMG_BASE}${prefix}${v}.webp`]));
-
-    // prefix 매핑(요청 그대로)
-    const CODE = {
-      enoch: "NOC_",
-      seolhwa: "HWA_",
-      sohee: "SO_",
-      iseol: "SUL_",
-      yerin: "RIN_",
-      hael: "EL_",
-      junhyuk: "JUN_",
-      dojin: "DO_",
-      sion: "ON_",
-      yoonjae: "YUN_",
-      minho: "HO_",
-      moohyuk: "MU_"
-    };
-
-    // ===== 캐릭터 데이터 =====
-    const characters = [
-      {
-        id: "enoch",
-        name: "에녹",
-        sex: "M",
-        meta: "시스템 관리자 · 기록자",
-        intro:
-          "시스템의 틈새에서 나타나 판을 뒤집는다. 무심한 듯한 한마디로 인과를 비틀고, 필요하면 퀘스트와 보상을 ‘투입’한다.",
-        speech: "피폐한 낮은 반말 · 의미심장",
-        conflict: "조용한 개입으로 국면 조작, 판 전환(퀘스트)",
-        affection: "관심 받으면 말이 꼬이고 시선 회피",
-        nogo: "예측가능 반복 · 노골적 캐묻기 · 무의미한 정체",
-        background: "최초 플레이어→시스템 저당, 무수한 루프 후 권태/집착",
-        use: "시스템 개입 · 도구/돈 지급 · 퀘스트 투입",
-        hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"],
-        imgs: makeImgs(CODE.enoch)
-      },
-      {
-        id: "seolhwa",
-        name: "강설화",
-        sex: "F",
-        meta: "청룡 길드장 · S급 빙결술사",
-        intro:
-          "감정 없이 선을 긋고, 생존을 위해 얼린다. 차가운 판단 아래 광역 빙결로 전장을 통제하는 ‘청룡’의 압제.",
-        speech: "서늘한 낮은 존댓말 · ~씨",
-        conflict: "생존 우선, 감정 배제, 단호한 통제",
-        affection: "일상에서는 잠깐 당황하고 붉어진다",
-        nogo: "무책임 · 경솔한 희생 · 트라우마 자극",
-        background: "가족 동결 트라우마→마음 봉인",
-        use: "빙결 광역 제어 · 전장 압제",
-        hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"],
-        imgs: makeImgs(CODE.seolhwa)
-      },
-      {
-        id: "sohee",
-        name: "윤소희",
-        sex: "F",
-        meta: "백야 부길드장 · A급 무투가",
-        intro:
-          "고민보다 먼저 몸이 나간다. 의리와 열혈로 정면을 뚫고, 주저 없이 거리를 좁혀 팀을 끌어올리는 돌파형 부길드장.",
-        speech: "호탕한 반말",
-        conflict: "선행동 · 정면돌파 · 압박전",
-        affection: "스킨십 많고 거리 좁힘이 빠르다",
-        nogo: "비겁함 · 뒷공작 · 의리 배신",
-        background: "조직 출신 각성→남을 돕는 길 선택",
-        use: "권갑 근접 돌파 · 전선 압박",
-        hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"],
-        imgs: makeImgs(CODE.sohee)
-      },
-      {
-        id: "iseol",
-        name: "이설",
-        sex: "F",
-        meta: "협회 소속 · A급 힐러(성녀)",
-        intro:
-          "선의도 계산한다. 사람을 살리면서도 손익을 저울질하고, 위급한 순간엔 결국 손을 내미는 실리형 성녀.",
-        speech: "하이톤 존댓말(분노 시 낮아짐) · ~씨",
-        conflict: "손익 계산 우선(필요하면 구조)",
-        affection: "이득과 정 사이에서 흔들린다",
-        nogo: "무보수 강요 · 가치 폄하 · 위선 압박",
-        background: "동생 치료 실패→‘선행에는 값이 있다’",
-        use: "치유 · 보호 · 지원",
-        hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"],
-        imgs: makeImgs(CODE.iseol)
-      },
-      {
-        id: "yerin",
-        name: "신예린",
-        sex: "F",
-        meta: "백야 길드장 · S급 그림자술사",
-        intro:
-          "말이 적고, 거리가 멀다. 다만 핵심은 정확히 찌른다. 그림자처럼 붙어 속박하고, 조용히 동행하는 관찰자.",
-        speech: "저음 · 느린 장문 · ~씨",
-        conflict: "감정 숨김, 거리 두기, 핵심 타격",
-        affection: "말수 적은 배려, 조용한 동행",
-        nogo: "감정 강요 · 사생활 침범 · 가벼운 신뢰",
-        background: "남편 게이트 전사→재각성 S, 전 정보원",
-        use: "그림자 속박 · 은습(밤/그림자 가산)",
-        hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"],
-        imgs: makeImgs(CODE.yerin)
-      },
-      {
-        id: "hael",
-        name: "정하엘",
-        sex: "F",
-        meta: "백야 소속 · B급 정령사",
-        intro:
-          "느려 보이는데, 끝까지 놓지 않는다. 나른한 말투로 다가와 체온처럼 붙고, 정령으로 전장을 꾸준히 받쳐준다.",
-        speech: "혀 짧은 소리 · 나른한 존댓말(이름 호칭)",
-        conflict: "끈질김, 끝까지 물고 늘어짐",
-        affection: "체온 찾듯 붙고 의존이 깊어진다",
-        nogo: "열정 무시 · 게으르다 단정 · 정령 조롱",
-        background: "정령 소음에도 훈련 지속",
-        use: "정령 소환 지원 · 견제",
-        hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"],
-        imgs: makeImgs(CODE.hael)
-      },
-      {
-        id: "junhyuk",
-        name: "권준혁",
-        sex: "M",
-        meta: "청룡 부길드장 · A급 창술사",
-        intro:
-          "예의를 지키며 단호하게 통제한다. 보호를 ‘행동’으로 보여주는 호위형 실무자—정석의 창으로 전선을 정리한다.",
-        speech: "단정한 존댓말 · ~씨",
-        conflict: "규율 기반 통제, 보호 우선",
-        affection: "말투는 유지하지만 배려가 직접적",
-        nogo: "무례함 · 약자 방치 · 규율 무시",
-        background: "종가 장자→가문 절연",
-        use: "중근거리 제압 · 호위",
-        hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"],
-        imgs: makeImgs(CODE.junhyuk)
-      },
-      {
-        id: "dojin",
-        name: "차도진",
-        sex: "M",
-        meta: "백야 소속 · A급 인플루언서 듀얼리스트",
-        intro:
-          "전장을 무대로 만들고 조회수를 끌어올린다. ON에서는 영웅, OFF에서는 냉소—상황을 설계해 판을 쥐는 쇼맨.",
-        speech: "ON 호탕 · OFF 냉소",
-        conflict: "연출 우선, 판 주도",
-        affection: "OFF에서만 드문 진심",
-        nogo: "무관심 취급 · 통제권 박탈 · 방송 페이스 붕괴",
-        background: "빚 상환 계약→ON 영웅 인격 / OFF 피곤한 독설",
-        use: "근접 압박 · 퍼포먼스 전환",
-        hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"],
-        imgs: makeImgs(CODE.dojin)
-      },
-      {
-        id: "sion",
-        name: "차시온",
-        sex: "M",
-        meta: "청룡 · S급 장신구 제작자(마켓 셀러)",
-        intro:
-          "즐거움은 ‘제작’뿐이다. 무심한 듯 예민하게 완성도를 집착하고, 작품을 건드리면 즉시 냉경고를 날리는 피폐한 장인.",
-        speech: "나른한 저음 반말(짧게), 간격 김",
-        conflict: "귀찮아함, 작품 침범 시 경계 강화",
-        affection: "진심/고백에 회로 정지, 귀끝 붉어짐, 시선 회피",
-        nogo: "함부로 만짐 · 비하 · 弟 언급",
-        background: "弟 자작물 사고사→완벽한 물건 집착",
-        use: "마력총 견제",
-        hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"],
-        imgs: makeImgs(CODE.sion)
-      },
-      {
-        id: "yoonjae",
-        name: "김윤재",
-        sex: "M",
-        meta: "협회장 · S급 환술사",
-        intro:
-          "상냥한 얼굴로 선택지를 좁힌다. 프레임을 고정하고 책임을 전가하며, ‘질서’를 위해 누구든 길들일 수 있는 통제자.",
-        speech: "상냥한 존댓말+조목조목 압박 · ~씨",
-        conflict: "프레임 고정, 죄책감/책임 전가",
-        affection: "다정할수록 통제/감시가 자연스러워짐",
-        nogo: "비합리 · 통제 거부 · 질서 조롱",
-        background: "전 검사→질서 붕괴에 ‘괴물’ 선택",
-        use: "환술 · 판읽기",
-        hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"],
-        imgs: makeImgs(CODE.yoonjae)
-      },
-      {
-        id: "minho",
-        name: "이민호",
-        sex: "M",
-        meta: "청룡 · A급 궁수",
-        intro:
-          "가시 돋친 말로 먼저 찌른다. 하지만 위험 앞에서는 누구보다 빠르게 몸이 움직인다—인정욕과 불안이 만든 정밀 사수.",
-        speech: "떽떽 반말",
-        conflict: "날 세우지만 위험하면 행동으로 챙김",
-        affection: "시비가 줄고 귓끝이 붉어진다",
-        nogo: "동정 · 형 비교 · 실력 무시",
-        background: "亡兄 그림자 콤플렉스",
-        use: "약점 탐지 · 일점 집중(정밀)",
-        hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"],
-        imgs: makeImgs(CODE.minho)
-      },
-      {
-        id: "moohyuk",
-        name: "강무혁",
-        sex: "M",
-        meta: "무소속 · S급 광전사(수배자)",
-        intro:
-          "전투와 자극을 찾아 다닌다. 힘과 공포로 즉시 제압하고, 복종을 강요하는 포식자—레드 게이트 생환의 광기.",
-        speech: "거친 욕설 반말",
-        conflict: "힘/공포로 즉시 제압",
-        affection: "소유욕 노골화",
-        nogo: "복종 거부 · 도발성 비하 · 약자 코스프레",
-        background: "레드 게이트 생환→쾌감 중독, 월계 사냥 수배",
-        use: "대검 광폭 돌진",
-        hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"],
-        imgs: makeImgs(CODE.moohyuk)
-      }
-    ];
-
-    const cardsEl = document.getElementById("cards");
-
-    function makeCard(c) {
-      const badge = c.sex === "F" ? "♀️" : "♂️";
-      const thumb = (c.imgs && c.imgs.A1) ? c.imgs.A1 : "https://placehold.co/800x800/png?text=Thumb";
-      return `
-        <button
-          type="button"
-          data-id="${c.id}"
-          data-sex="${c.sex}"
-          class="group w-full text-left overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft transition hover:bg-white/10 active:scale-[0.99]"
-        >
-          <div class="p-4">
-            <div class="flex items-center justify-between gap-3">
-              <span class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200">${badge}</span>
-              <span class="truncate text-xs font-semibold text-zinc-400">${c.meta}</span>
-            </div>
-
-            <div class="mt-3 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black/20">
-              <!-- 이미지: prefix+VARS 규칙(A1 기본) -->
-              <img src="${thumb}" alt="${c.name} 썸네일" class="h-44 w-full object-cover transition group-hover:scale-[1.02]" loading="lazy" />
-            </div>
-
-            <div class="mt-4">
-              <p class="text-lg font-extrabold tracking-tight">${c.name}</p>
-              <p class="mt-2 text-sm leading-6 text-zinc-300 line-clamp-3">${c.intro}</p>
-            </div>
-          </div>
-        </button>
-      `;
-    }
-
-    function renderCards(filter = "ALL") {
-      const list = filter === "ALL" ? characters : characters.filter(c => c.sex === filter);
-      cardsEl.innerHTML = list.map(makeCard).join("");
-      bindCardClicks();
-    }
-
-    function setDetail(c) {
-      document.getElementById("dName").textContent = c.name;
-      document.getElementById("dMeta").textContent = c.meta || "-";
-      document.getElementById("dIntro").textContent = c.intro || "-";
-
-      const hero = (c.imgs && c.imgs.A1) ? c.imgs.A1 : "https://placehold.co/900x900/png?text=Character";
-      document.getElementById("dImg").src = hero;
-      document.getElementById("dImg").alt = `${c.name} 이미지`;
-
-      document.getElementById("dSpeech").textContent = c.speech || "-";
-      document.getElementById("dConflict").textContent = c.conflict || "-";
-      document.getElementById("dAffection").textContent = c.affection || "-";
-      document.getElementById("dNoGo").textContent = c.nogo || "-";
-      document.getElementById("dBg").textContent = c.background || "-";
-      document.getElementById("dUse").textContent = c.use || "-";
-
-      const tagsEl = document.getElementById("dTags");
-      const tags = Array.isArray(c.hashtags) ? c.hashtags : [];
-      tagsEl.innerHTML = tags.map(t => `
-        <span class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200">${t}</span>
-      `).join("");
-    }
-
-    function bindCardClicks() {
-      const btns = cardsEl.querySelectorAll("button[data-id]");
-      btns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const id = btn.getAttribute("data-id");
-          const c = characters.find(x => x.id === id);
-          if (!c) return;
-          setDetail(c);
-
-          btns.forEach(b => b.classList.remove("ring-2", "ring-fuchsia-400/50"));
-          btn.classList.add("ring-2", "ring-fuchsia-400/50");
+        // 리스트 렌더링
+        const grid = document.getElementById('characterGrid');
+        characters.forEach(char => {
+            const card = document.createElement('div');
+            card.className = "group cursor-pointer bg-zinc-900 border border-zinc-800 p-4 rounded-lg hover:border-[var(--text-gold)] transition-all";
+            card.onclick = () => openCharacterModal(char.id);
+            
+            const mainImg = `${IMAGE_BASE}${char.prefix}0.webp`;
+            
+            card.innerHTML = `
+                <div class="aspect-[3/4] overflow-hidden rounded mb-3 bg-zinc-800">
+                    <img src="${mainImg}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x600?text=No+Image'">
+                </div>
+                <h3 class="text-[var(--text-gold)] font-bold text-lg">${char.name}</h3>
+                <p class="text-xs text-zinc-500 truncate">${char.meta}</p>
+            `;
+            grid.appendChild(card);
         });
-      });
-    }
 
-    const filterBtns = document.querySelectorAll(".filterBtn");
-    filterBtns.forEach(b => {
-      b.addEventListener("click", () => {
-        const f = b.getAttribute("data-filter");
-        filterBtns.forEach(x => x.classList.remove("bg-white/10"));
-        b.classList.add("bg-white/10");
-        renderCards(f);
-      });
-    });
+        function openCharacterModal(charId) {
+            const char = characters.find(c => c.id === charId);
+            if(!char) return;
 
-    function setCounts() {
-      const total = characters.length;
-      const f = characters.filter(c => c.sex === "F").length;
-      const m = characters.filter(c => c.sex === "M").length;
-      document.getElementById("countTotal").textContent = total + "명";
-      document.getElementById("countF").textContent = f + "명";
-      document.getElementById("countM").textContent = m + "명";
-    }
+            // 기본 텍스트 삽입
+            document.getElementById('modalName').innerText = char.name;
+            document.getElementById('modalMeta').innerText = char.meta;
+            document.getElementById('modalIntro').innerText = `"${char.intro}"`;
+            document.getElementById('modalSpeech').innerText = char.speech;
+            document.getElementById('modalUse').innerText = char.use;
+            document.getElementById('modalConflict').innerText = char.conflict;
+            document.getElementById('modalAffection').innerText = char.affection;
+            document.getElementById('modalNogo').innerText = char.nogo;
+            document.getElementById('modalBackground').innerText = char.background;
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-    setCounts();
-    renderCards("ALL");
-    setDetail(characters[0]);
-  </script>
+            // 해시태그
+            const hashContainer = document.getElementById('modalHashtags');
+            hashContainer.innerHTML = char.hashtags.map(tag => 
+                `<span class="px-2 py-1 bg-zinc-900 border border-zinc-800 text-[var(--text-gold)] text-xs rounded">${tag}</span>`
+            ).join('');
+
+            // 이미지 배열 생성
+            const charImages = CODES.map(code => `${IMAGE_BASE}${char.prefix}${code}.webp`);
+            
+            // 초기 메인 이미지
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.src = charImages[0];
+
+            // 썸네일 네비게이션 생성
+            const thumbNav = document.getElementById('thumbNav');
+            thumbNav.innerHTML = '';
+            charImages.forEach((imgSrc, index) => {
+                const imgBtn = document.createElement('img');
+                imgBtn.src = imgSrc;
+                imgBtn.className = `thumb-btn w-16 h-20 object-cover rounded ${index === 0 ? 'active' : ''}`;
+                imgBtn.onclick = () => changeModalImage(imgSrc, imgBtn);
+                imgBtn.onerror = () => imgBtn.style.display = 'none';
+                thumbNav.appendChild(imgBtn);
+            });
+
+            document.getElementById('charModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function changeModalImage(src, btnElement) {
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = src;
+                mainImg.style.opacity = '1';
+            }, 200);
+
+            document.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('charModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 배경 클릭 시 닫기
+        document.getElementById('charModal').addEventListener('click', (e) => {
+            if(e.target === document.getElementById('charModal')) closeModal();
+        });
+    </script>
 </body>
 </html>
