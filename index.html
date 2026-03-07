@@ -45,6 +45,18 @@
             #charModal { padding: 1rem; }
             .modal-container { border-radius: 1.5rem; max-height: 90vh; width: 95%; }
         }
+        /* 여론/커뮤니티 스타일링 */
+    .feed-card { background: #f8fafc; border-radius: 12px; padding: 12px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
+    .feed-user { font-weight: 800; font-size: 11px; color: #64748b; margin-bottom: 4px; display: flex; justify-content: space-between; }
+    .feed-content { font-size: 12px; color: #1e293b; line-height: 1.5; }
+    .tag-trend { color: #0084ff; font-weight: 600; font-size: 10px; }
+    
+    /* 시스템 경보 스타일링 */
+    .alert-banner { background: linear-gradient(90deg, #ef4444, #b91c1c); color: white; padding: 10px; border-radius: 8px; font-family: 'Orbitron'; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
+
+    /* 상태바 */
+    .stat-bar-bg { background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; }
     </style>
 </head>
 <body class="p-4 md:p-10">
@@ -64,33 +76,116 @@
     </header>
 
     <div class="max-w-7xl mx-auto">
-        <main id="section-world" class="content-section active">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="lg:col-span-2 space-y-6 md:space-y-8">
-                    <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 orbitron text-4xl md:text-6xl font-black opacity-5 uppercase select-none">Origin</div>
-                        <h2 class="orbitron text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
-                        <div class="space-y-4 text-slate-300 text-xs md:text-base leading-relaxed">
-                            <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
-                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 에너지는 심장 부근의 '마석'에서 기인합니다.</p>
+<main id="section-world" class="content-section active">
+    <div class="alert-banner flex items-center justify-between px-4 md:px-6 mb-6">
+        <div class="flex items-center gap-3">
+            <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
+            <span class="text-[10px] md:text-xs font-black tracking-widest uppercase">Critical: Gate Break Imminent</span>
+        </div>
+        <span class="text-[9px] md:text-[10px] opacity-80 orbitron">Sector-7 / Class: B</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+        <div class="lg:col-span-8 space-y-6 md:space-y-8">
+            <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 right-0 p-4 orbitron text-5xl md:text-7xl font-black opacity-5 uppercase select-none pointer-events-none">Status</div>
+                <h2 class="orbitron text-xl md:text-2xl font-bold mb-6 text-blue-400 tracking-widest">SYSTEM INTERFACE</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-5">
+                        <p class="text-sm text-slate-300 font-medium leading-relaxed">
+                            <span class="text-blue-400 font-bold">마력 인터페이스:</span> 각성자에게 각인된 고유 각인. 타인에게는 보이지 않는 비물질적 홀로그램 형태로 출력됩니다.
+                        </p>
+                        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-4 backdrop-blur-sm">
+                            <div>
+                                <div class="flex justify-between text-[10px] orbitron mb-1.5 font-bold tracking-wider"><span>MANA REBOUND</span><span class="text-blue-400">24%</span></div>
+                                <div class="stat-bar-bg"><div class="stat-bar-fill bg-blue-500 shadow-[0_0_10px_#3b82f6]" style="width: 24%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[10px] orbitron mb-1.5 font-bold tracking-wider"><span>MENTAL FATIGUE</span><span class="text-amber-400">68%</span></div>
+                                <div class="stat-bar-bg"><div class="stat-bar-fill bg-amber-500 shadow-[0_0_10px_#f59e0b]" style="width: 68%"></div></div>
+                            </div>
                         </div>
-                    </section>
-                    <section class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-sm">
-                        <div class="border-l-4 border-blue-500 bg-white p-4 rounded-xl shadow-sm"><h4 class="font-bold text-slate-800 mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">마물이 유출되는 일반적인 통로.</p></div>
-                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-red-700 mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">마물이 현실로 쏟아져 나오는 상태.</p></div>
-                        <div class="border-l-4 border-purple-500 bg-purple-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-purple-700 mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">예측 불가능한 특수 구역.</p></div>
-                    </section>
-                </div>
-                <aside class="bg-white border border-slate-200 p-6 rounded-2xl md:rounded-3xl shadow-sm h-fit">
-                    <h2 class="orbitron text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-red-500 text-white shrink-0">S</span><p class="text-[11px] md:text-xs font-bold text-slate-800">국가 전략급 무력</p></li>
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0">A-B</span><p class="text-[11px] md:text-xs font-bold text-slate-800">숙련된 전투 요원</p></li>
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0">C-D</span><p class="text-[11px] md:text-xs font-bold text-slate-800">일반 헌터 요원</p></li>
+                    </div>
+                    <ul class="text-[11px] md:text-xs text-slate-400 space-y-3 border-l border-white/10 pl-6">
+                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">등급 평가:</b> 단순 전투력이 아닌 현상 개입 범위(Range of Influence) 기준.</span></li>
+                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">부작용:</b> 고등급 스킬 사용 시 일시적 신경 마비 또는 마력 역류 발생 가능.</span></li>
+                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">희귀 특화:</b> 특정 속성이나 환경에서만 S급 효율을 내는 변수 존재.</span></li>
                     </ul>
-                </aside>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+                <div class="bg-white border p-4 rounded-xl shadow-sm hover:border-blue-200 transition-colors">
+                    <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Gate Log</h4>
+                    <p class="text-xs font-bold text-slate-900">일반 게이트</p>
+                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">측정 등급과 난이도 일치. 표준 공략 가능.</p>
+                </div>
+                <div class="bg-red-50 border border-red-100 p-4 rounded-xl shadow-sm hover:border-red-200 transition-colors">
+                    <h4 class="orbitron text-[9px] font-bold text-red-400 mb-2 tracking-tighter uppercase">Alert</h4>
+                    <p class="text-xs font-bold text-red-700">게이트 브레이크</p>
+                    <p class="text-[10px] text-red-600/70 mt-1 leading-tight">방치 시 마물 유출. 즉시 전면 통제 필요.</p>
+                </div>
+                <div class="bg-purple-50 border border-purple-100 p-4 rounded-xl shadow-sm">
+                    <h4 class="orbitron text-[9px] font-bold text-purple-400 mb-2 tracking-tighter uppercase">Critical</h4>
+                    <p class="text-xs font-bold text-purple-700">레드 게이트</p>
+                    <p class="text-[10px] text-purple-600/70 mt-1 leading-tight">내부 변질. 공간 왜곡 및 통신 두절 발생.</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-sm">
+                    <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Artifact</h4>
+                    <p class="text-xs font-bold text-slate-700">마력 잔재</p>
+                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">클리어 후에도 오염 구역 형성. 사후 정화 필수.</p>
+                </div>
             </div>
-        </main>
+        </div>
+
+        <div class="lg:col-span-4 space-y-6">
+            <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm">
+                <h2 class="orbitron text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase flex justify-between items-center">
+                    <span>Social / Media</span>
+                    <span class="text-[8px] text-blue-500 not-italic animate-pulse">LIVE FEED</span>
+                </h2>
+                
+                <div class="space-y-3 max-h-[400px] overflow-y-auto custom-scroll pr-1">
+                    <div class="feed-card">
+                        <div class="feed-user"><span>@Hunter_Watcher</span><span>방금</span></div>
+                        <p class="feed-content">강남역 인근 마력 수치 대폭발 중. 또 출근길 막히겠네.. <span class="tag-trend">#게이트제보 #강남역</span></p>
+                    </div>
+                    <div class="feed-card border-blue-100 bg-blue-50/20">
+                        <div class="feed-user text-blue-600"><span>[뉴스] 데일리 헌터</span><span>15분 전</span></div>
+                        <p class="feed-content">청룡 길드, 이번 C급 게이트 최단 시간 클리어 기록 경신. 주가 급등 예고.</p>
+                    </div>
+                    <div class="feed-card">
+                        <div class="feed-user"><span>@Citizen_A</span><span>1시간 전</span></div>
+                        <p class="feed-content">집 앞 게이트 잔재 정화가 덜 됐는지 자꾸 환청이 들림. 협회는 대체 뭐하냐?</p>
+                    </div>
+                    <div class="feed-card border-red-200 bg-red-50/40">
+                        <div class="feed-user text-red-500"><span>[RUMOR] Deep_Layer</span><span>3시간 전</span></div>
+                        <p class="feed-content">암시장에 뜬 S급 혈석, 사실은 미등록 각성자 강제 각성 실험 결과물이라는데?</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-100">
+                    <h3 class="orbitron text-[9px] font-bold text-slate-400 mb-4 tracking-widest uppercase">Economic Index</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px] text-slate-600 font-medium">마력석(상급) 단가</span>
+                            <span class="text-xs text-blue-600 font-bold">▲ 1,240,000 KRW</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px] text-slate-600 font-medium">헌터 보험 할증률</span>
+                            <span class="text-xs text-red-600 font-bold">▲ 4.5%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px] text-slate-600 font-medium">길드 기부금 공제율</span>
+                            <span class="text-xs text-slate-900 font-bold">12.0% (동결)</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
 
         <main id="section-factions" class="content-section">
             <div class="flex gap-2 overflow-x-auto pb-4 mb-4 custom-scroll sticky top-0 z-20 bg-white/80 backdrop-blur-sm -mx-4 px-4 pt-2">
