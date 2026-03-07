@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRAC 시나리오 랜딩 - 캐릭터 라인업</title>
+  <title>CRAC</title>
 
   <!-- Google Font: Noto Sans KR -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Noto Sans KR"', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Apple Color Emoji', 'Segoe UI Emoji'],
+            sans: ['"Noto Sans KR"', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto'],
           },
           boxShadow: {
             soft: '0 14px 48px rgba(0,0,0,0.28)'
@@ -34,248 +34,215 @@
     <div class="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-fuchsia-600/20 blur-3xl"></div>
     <div class="absolute top-1/3 -right-24 h-[28rem] w-[28rem] rounded-full bg-indigo-500/20 blur-3xl"></div>
     <div class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_45%)]"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.25),rgba(0,0,0,0.85))]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.06),transparent_40%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.9))]"></div>
   </div>
 
-  <!-- Top bar -->
+  <!-- Top category nav -->
   <header class="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/70 backdrop-blur">
     <div class="mx-auto max-w-6xl px-4 py-3 md:px-6">
-      <div class="flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="h-9 w-9 rounded-xl bg-white/10 ring-1 ring-white/10 grid place-items-center shrink-0">
-            <span class="text-xs font-extrabold tracking-wider">CRAC</span>
-          </div>
-          <div class="leading-tight min-w-0">
-            <p class="text-sm font-semibold truncate">시나리오 모드 · 라인업 랜딩</p>
-            <p class="text-xs text-zinc-400 truncate">세계관 → 캐릭터 선택 → 상세 패널</p>
-          </div>
-        </div>
-
-        <nav class="hidden md:flex items-center gap-2">
-          <a href="#world" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">세계관</a>
-          <a href="#characters" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">캐릭터</a>
-          <a href="#rules" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">운영 규칙</a>
-          <a href="#start" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">시작</a>
-        </nav>
-      </div>
+      <nav class="flex items-center justify-center gap-2 md:gap-3">
+        <a href="#world" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-100 transition hover:bg-white/10">
+          세계관
+        </a>
+        <a href="#characters" class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-zinc-100 transition hover:bg-white/10">
+          캐릭터
+        </a>
+      </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative">
-    <div class="mx-auto max-w-6xl px-4 pt-7 pb-6 md:px-6 md:pt-10 md:pb-10">
-      <div class="grid gap-5 md:grid-cols-2 md:gap-8">
-        <div>
-          <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-zinc-200 ring-1 ring-white/10">
-            <span class="h-2 w-2 rounded-full bg-fuchsia-400"></span>
-            다인/상황극 라인업
-          </div>
-
-          <h1 class="mt-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-            한 장면에, <span class="text-fuchsia-200">선택 가능한 인물</span>이 많을수록<br class="hidden md:block" />
-            대화는 더 날카로워져요.
+  <!-- WORLD -->
+  <section id="world" class="mx-auto max-w-6xl px-4 pt-8 pb-8 md:px-6 md:pt-12 md:pb-10">
+    <div class="grid gap-5 md:grid-cols-[1.1fr_0.9fr] md:gap-6">
+      <div class="rounded-3xl border border-white/10 bg-white/5 shadow-soft">
+        <div class="p-5 md:p-7">
+          <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">WORLD</p>
+          <h1 class="mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
+            세계관
           </h1>
-
-          <p class="mt-3 text-sm leading-relaxed text-zinc-300">
-            먼저 세계관을 한 번 훑고, 캐릭터를 고르면 말투·성격·갈등·금선·배경·운용이 한 번에 정리돼요.
-            <span class="text-zinc-200 font-semibold">“누구를 골라서 판을 열 건지”</span>만 결정하면 됩니다.
+          <p class="mt-4 text-sm leading-7 text-zinc-300 md:text-base">
+            (여기에 세계관 소개 텍스트를 넣을 예정)
           </p>
 
-          <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-            <a id="start" href="#" class="inline-flex items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft hover:bg-fuchsia-400 active:scale-[0.98] transition">
-              CRAC에서 시나리오 열기 →
-            </a>
-            <a href="#characters" class="inline-flex items-center justify-center rounded-xl bg-white/5 px-5 py-3 text-sm font-extrabold text-zinc-100 ring-1 ring-white/10 hover:bg-white/10 active:scale-[0.98] transition">
-              캐릭터 보기
-            </a>
+          <div class="mt-6 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="text-xs font-semibold text-zinc-200">기본 키워드</p>
+              <p class="mt-2 text-sm leading-6 text-zinc-300">
+                (예: 현대판타지 / 헌터 / 게이트 / 협회 / 길드)
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-black/20 p-4">
+              <p class="text-xs font-semibold text-zinc-200">플레이 톤</p>
+              <p class="mt-2 text-sm leading-6 text-zinc-300">
+                (예: 사건 누적형 / 관계 변화 / 상황극 중심 / 장면형 서사)
+              </p>
+            </div>
           </div>
 
-          <div class="mt-5 grid grid-cols-3 gap-2">
-            <div class="rounded-2xl bg-white/5 p-3 ring-1 ring-white/10">
-              <p class="text-xs text-zinc-400">라인업</p>
+          <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-4">
+            <p class="text-xs font-semibold text-zinc-200">운영 규칙</p>
+            <p class="mt-2 text-sm leading-6 text-zinc-300">
+              讀取ⓒ資訊前: 年齡·性別·地位·外形·體型·服裝除已明示設定外, 禁止追加創作
+            </p>
+          </div>
+
+          <div class="mt-6">
+            <a href="#characters" class="inline-flex items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-fuchsia-400 active:scale-[0.98]">
+              캐릭터 보기 →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-white/5 shadow-soft">
+        <div class="p-4 md:p-5">
+          <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">VISUAL</p>
+
+          <!-- 이미지 교체: 세계관 대표 비주얼 -->
+          <!-- 예: https://placehold.co/1200x1500/png?text=World+Visual -->
+          <img
+            src="https://placehold.co/1200x1500/png?text=World+Visual"
+            alt="세계관 대표 이미지"
+            class="mt-3 h-[360px] w-full rounded-2xl object-cover ring-1 ring-white/10 md:h-[560px]"
+            loading="lazy"
+          />
+
+          <div class="mt-4 grid grid-cols-3 gap-2">
+            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
+              <p class="text-[11px] text-zinc-400">라인업</p>
               <p class="mt-1 text-sm font-semibold" id="countTotal">-</p>
             </div>
-            <div class="rounded-2xl bg-white/5 p-3 ring-1 ring-white/10">
-              <p class="text-xs text-zinc-400">여성</p>
+            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
+              <p class="text-[11px] text-zinc-400">여성</p>
               <p class="mt-1 text-sm font-semibold" id="countF">-</p>
             </div>
-            <div class="rounded-2xl bg-white/5 p-3 ring-1 ring-white/10">
-              <p class="text-xs text-zinc-400">남성</p>
+            <div class="rounded-2xl bg-black/20 p-3 ring-1 ring-white/10">
+              <p class="text-[11px] text-zinc-400">남성</p>
               <p class="mt-1 text-sm font-semibold" id="countM">-</p>
             </div>
           </div>
-        </div>
-
-        <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-          <div class="p-4 md:p-5">
-            <div class="flex items-center justify-between gap-3">
-              <p class="text-sm font-extrabold">대표 비주얼</p>
-              <span class="text-xs text-zinc-400">이미지 자리</span>
-            </div>
-
-            <!-- 이미지 교체: 히어로 배경/대표 스크린샷 -->
-            <!-- 예: https://placehold.co/1200x800/png?text=Scenario+Hero -->
-            <img
-              src="https://placehold.co/1200x800/png?text=Scenario+Hero"
-              alt="시나리오 대표 이미지"
-              class="mt-3 h-56 w-full rounded-2xl object-cover ring-1 ring-white/10 md:h-72"
-              loading="lazy"
-            />
-
-            <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
-              <p class="text-xs font-semibold text-zinc-200">플레이 포인트</p>
-              <ul class="mt-2 space-y-1 text-sm text-zinc-300">
-                <li>• 세계관 → 인물 선택 순서로 몰입</li>
-                <li>• 인물 선택 → 즉시 말투/금선 확인</li>
-                <li>• 같은 상황도 인물에 따라 판이 완전히 달라짐</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- World (Category) -->
-      <div id="world" class="mt-6 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-        <div class="p-4 md:p-6">
-          <div class="flex items-end justify-between gap-3">
-            <h2 class="text-lg font-extrabold tracking-tight">세계관</h2>
-            <span class="text-xs text-zinc-400">소개/룰/톤 정리</span>
-          </div>
-
-          <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-            (여기에 세계관 소개 텍스트를 넣을 예정) — 내용 주시면 이 부분만 교체하면 됩니다.
-          </p>
-
-          <div class="mt-4 grid gap-3 sm:grid-cols-2">
-            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-              <p class="text-xs font-semibold text-zinc-200">키워드</p>
-              <p class="mt-2 text-sm text-zinc-300 leading-relaxed">
-                (예: 현대판타지 / 헌터 / 길드 / 게이트 / 협회 ...)
-              </p>
-            </div>
-            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-              <p class="text-xs font-semibold text-zinc-200">플레이 규칙</p>
-              <p class="mt-2 text-sm text-zinc-300 leading-relaxed">
-                (예: 사건 누적 방식, 감정/상황 우선순위, 금지 요소 등)
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Rules strip -->
-      <div id="rules" class="mt-6 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-        <div class="p-4 md:p-6">
-          <h2 class="text-lg font-extrabold tracking-tight">네임드ⓒ 운영 규칙(표시용)</h2>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-            讀取ⓒ資訊前: 年齡·性別·地位·外形·體型·服裝除已明示設定外, 禁止追加創作
-          </p>
-          <p class="mt-2 text-xs text-zinc-400">
-            * 이 섹션은 “규칙을 지키는 시나리오”임을 보여주는 신뢰 요소로만 사용합니다.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Characters -->
+  <!-- CHARACTERS -->
   <section id="characters" class="mx-auto max-w-6xl px-4 pb-8 md:px-6 md:pb-12">
-    <div class="mb-4 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-      <div class="p-4 md:p-6">
-        <div class="flex items-end justify-between gap-3">
-          <h2 class="text-lg font-extrabold tracking-tight">캐릭터</h2>
-          <span class="text-xs text-zinc-400">라인업 선택 → 상세</span>
+    <div class="mb-5 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
+      <div class="p-5 md:p-6">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-xs font-semibold tracking-[0.24em] text-zinc-400">CHARACTERS</p>
+            <h2 class="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl">캐릭터</h2>
+            <p class="mt-2 text-sm leading-6 text-zinc-300">
+              캐릭터를 선택하면 오른쪽에 헌터증 형태로 정보가 표시됩니다.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button data-filter="ALL" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
+              전체
+            </button>
+            <button data-filter="F" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
+              ♀️
+            </button>
+            <button data-filter="M" class="filterBtn rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-zinc-100 transition hover:bg-white/10">
+              ♂️
+            </button>
+          </div>
         </div>
-        <p class="mt-2 text-sm leading-relaxed text-zinc-300">
-          (여기에 캐릭터 소개/관계/선택 가이드 문장을 넣을 예정) — 내용 주시면 이 부분만 교체하면 됩니다.
-        </p>
       </div>
     </div>
 
     <div class="grid gap-5 md:grid-cols-12 md:gap-6">
-      <!-- Cards -->
+      <!-- Character list -->
       <div class="md:col-span-7">
-        <div class="flex items-end justify-between gap-3">
-          <h2 class="text-xl font-extrabold tracking-tight">등장인물 라인업</h2>
-          <div class="hidden sm:flex items-center gap-2">
-            <button data-filter="ALL" class="filterBtn rounded-xl bg-white/5 px-3 py-2 text-xs font-bold ring-1 ring-white/10 hover:bg-white/10">전체</button>
-            <button data-filter="F" class="filterBtn rounded-xl bg-white/5 px-3 py-2 text-xs font-bold ring-1 ring-white/10 hover:bg-white/10">♀️</button>
-            <button data-filter="M" class="filterBtn rounded-xl bg-white/5 px-3 py-2 text-xs font-bold ring-1 ring-white/10 hover:bg-white/10">♂️</button>
-          </div>
-        </div>
-
-        <div class="mt-3 grid gap-3 sm:grid-cols-2">
-          <!-- 카드들은 JS로 렌더링 -->
+        <div class="grid gap-3 sm:grid-cols-2">
           <div id="cards" class="contents"></div>
         </div>
-
-        <p class="mt-3 text-xs text-zinc-400">
-          * 카드를 클릭하면 오른쪽 상세 패널이 갱신됩니다.
-        </p>
       </div>
 
-      <!-- Detail panel -->
+      <!-- Hunter ID card -->
       <aside class="md:col-span-5 md:sticky md:top-[84px] md:self-start">
-        <div class="rounded-3xl border border-white/10 bg-white/5 shadow-soft">
-          <div class="p-4 md:p-6">
-            <div class="flex items-start justify-between gap-3">
-              <div class="min-w-0">
-                <p class="text-xs text-zinc-400">선택된 캐릭터</p>
-                <h3 id="dName" class="mt-1 text-xl font-extrabold tracking-tight truncate">캐릭터를 선택하세요</h3>
-                <p id="dMeta" class="mt-1 text-sm text-zinc-300">왼쪽 카드 클릭 → 상세 표시</p>
+        <div class="overflow-hidden rounded-[28px] border border-fuchsia-400/20 bg-gradient-to-b from-zinc-900 to-zinc-950 shadow-soft">
+          <div class="border-b border-white/10 bg-white/5 px-5 py-4">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <p class="text-[11px] font-semibold tracking-[0.24em] text-zinc-400">HUNTER ID</p>
+                <h3 id="dName" class="mt-1 text-2xl font-extrabold tracking-tight">캐릭터를 선택하세요</h3>
               </div>
-              <span id="dBadge" class="hidden md:inline-flex items-center rounded-full bg-fuchsia-500/15 px-3 py-1 text-xs font-bold text-fuchsia-200 ring-1 ring-fuchsia-400/20">
-                상세
+              <span class="rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 px-3 py-1 text-xs font-bold text-fuchsia-200">
+                ACTIVE
               </span>
             </div>
+          </div>
 
-            <div class="mt-3 flex flex-wrap gap-2" id="dTags"></div>
+          <div class="p-5">
+            <div class="grid gap-4 md:grid-cols-[132px_1fr]">
+              <div class="overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+                <!-- 이미지 교체: 캐릭터 대표 컷 (A1) -->
+                <img
+                  id="dImg"
+                  src="https://placehold.co/900x900/png?text=Select+a+Character"
+                  alt="선택된 캐릭터 이미지"
+                  class="h-40 w-full object-cover md:h-full"
+                  loading="lazy"
+                />
+              </div>
 
-            <div class="mt-4 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black/20">
-              <!-- 이미지 교체: 캐릭터 대표 컷 (A1) -->
-              <img id="dImg" src="https://placehold.co/900x900/png?text=Select+a+Character" alt="선택된 캐릭터 이미지" class="h-56 w-full object-cover md:h-64" loading="lazy" />
+              <div class="space-y-3">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-[11px] font-semibold text-zinc-400">분류</p>
+                  <p id="dMeta" class="mt-1 text-sm leading-6 text-zinc-200">왼쪽 캐릭터를 선택해주세요.</p>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-[11px] font-semibold text-zinc-400">말투</p>
+                  <p id="dSpeech" class="mt-1 text-sm leading-6 text-zinc-200">-</p>
+                </div>
+              </div>
             </div>
 
-            <div class="mt-4 grid gap-3">
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">소개</p>
-                <p id="dIntro" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+            <div class="mt-4 flex flex-wrap gap-2" id="dTags"></div>
+
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-[11px] font-semibold text-zinc-400">소개</p>
+                <p id="dIntro" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
               </div>
 
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">말투</p>
-                <p id="dSpeech" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-[11px] font-semibold text-zinc-400">갈등</p>
+                <p id="dConflict" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
               </div>
 
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">갈등(충돌)</p>
-                <p id="dConflict" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
-              </div>
-
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">친밀 반응</p>
-                <p id="dAffection" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+              <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p class="text-[11px] font-semibold text-zinc-400">친밀 반응</p>
+                <p id="dAffection" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
               </div>
 
               <div class="rounded-2xl border border-rose-400/20 bg-rose-500/10 p-4">
-                <p class="text-xs font-semibold text-rose-200">금선(禁线)</p>
-                <p id="dNoGo" class="mt-2 text-sm text-zinc-100 leading-relaxed">-</p>
+                <p class="text-[11px] font-semibold text-rose-200">금선</p>
+                <p id="dNoGo" class="mt-2 text-sm leading-7 text-zinc-100">-</p>
               </div>
 
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">배경</p>
-                <p id="dBg" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
-              </div>
+              <div class="grid gap-3 sm:grid-cols-2">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-[11px] font-semibold text-zinc-400">배경</p>
+                  <p id="dBg" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
+                </div>
 
-              <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">운용(활용)</p>
-                <p id="dUse" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <p class="text-[11px] font-semibold text-zinc-400">운용</p>
+                  <p id="dUse" class="mt-2 text-sm leading-7 text-zinc-200">-</p>
+                </div>
               </div>
             </div>
 
             <div class="mt-5">
-              <a href="#" class="hidden md:inline-flex w-full items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft hover:bg-fuchsia-400 active:scale-[0.98] transition">
+              <a href="#" class="hidden md:inline-flex w-full items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-fuchsia-400 active:scale-[0.98]">
                 이 캐릭터로 시작 →
               </a>
             </div>
@@ -285,12 +252,12 @@
     </div>
 
     <!-- Mobile sticky CTA -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-zinc-950/80 backdrop-blur">
+    <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-zinc-950/85 backdrop-blur">
       <div class="mx-auto max-w-6xl px-4 py-3">
         <div class="flex items-center gap-3">
           <div class="min-w-0 flex-1">
             <p class="text-xs text-zinc-400">선택 후 바로</p>
-            <p class="truncate text-sm font-extrabold text-white">CRAC에서 시나리오 열기</p>
+            <p class="truncate text-sm font-extrabold text-white">CRAC에서 시작하기</p>
           </div>
           <a href="#" class="inline-flex shrink-0 items-center justify-center rounded-xl bg-fuchsia-500 px-5 py-3 text-sm font-extrabold text-white shadow-soft active:scale-[0.98] transition">
             시작 →
@@ -304,7 +271,7 @@
   <footer class="border-t border-white/10 py-10">
     <div class="mx-auto max-w-6xl px-4 md:px-6">
       <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <p class="text-sm text-zinc-400">© <span id="year"></span> CRAC Scenario Landing Template</p>
+        <p class="text-sm text-zinc-400">© <span id="year"></span> CRAC</p>
         <div class="flex gap-2">
           <a class="text-sm text-zinc-300 hover:text-white" href="#">문의</a>
           <span class="text-zinc-700">·</span>
@@ -340,7 +307,7 @@
       moohyuk: "MU_"
     };
 
-    // ===== 캐릭터 데이터(사용자 제공) =====
+    // ===== 캐릭터 데이터 =====
     const characters = [
       {
         id: "enoch",
@@ -358,7 +325,6 @@
         hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"],
         imgs: makeImgs(CODE.enoch)
       },
-
       {
         id: "seolhwa",
         name: "강설화",
@@ -375,7 +341,6 @@
         hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"],
         imgs: makeImgs(CODE.seolhwa)
       },
-
       {
         id: "sohee",
         name: "윤소희",
@@ -392,7 +357,6 @@
         hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"],
         imgs: makeImgs(CODE.sohee)
       },
-
       {
         id: "iseol",
         name: "이설",
@@ -409,7 +373,6 @@
         hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"],
         imgs: makeImgs(CODE.iseol)
       },
-
       {
         id: "yerin",
         name: "신예린",
@@ -426,7 +389,6 @@
         hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"],
         imgs: makeImgs(CODE.yerin)
       },
-
       {
         id: "hael",
         name: "정하엘",
@@ -443,7 +405,6 @@
         hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"],
         imgs: makeImgs(CODE.hael)
       },
-
       {
         id: "junhyuk",
         name: "권준혁",
@@ -460,7 +421,6 @@
         hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"],
         imgs: makeImgs(CODE.junhyuk)
       },
-
       {
         id: "dojin",
         name: "차도진",
@@ -477,7 +437,6 @@
         hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"],
         imgs: makeImgs(CODE.dojin)
       },
-
       {
         id: "sion",
         name: "차시온",
@@ -494,7 +453,6 @@
         hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"],
         imgs: makeImgs(CODE.sion)
       },
-
       {
         id: "yoonjae",
         name: "김윤재",
@@ -511,7 +469,6 @@
         hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"],
         imgs: makeImgs(CODE.yoonjae)
       },
-
       {
         id: "minho",
         name: "이민호",
@@ -528,7 +485,6 @@
         hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"],
         imgs: makeImgs(CODE.minho)
       },
-
       {
         id: "moohyuk",
         name: "강무혁",
@@ -557,27 +513,22 @@
           type="button"
           data-id="${c.id}"
           data-sex="${c.sex}"
-          class="group w-full text-left overflow-hidden rounded-3xl border border-white/10 bg-white/5 hover:bg-white/10 active:scale-[0.99] transition shadow-soft"
+          class="group w-full text-left overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft transition hover:bg-white/10 active:scale-[0.99]"
         >
           <div class="p-4">
-            <div class="flex items-start justify-between gap-3">
-              <div class="min-w-0">
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200 ring-1 ring-white/10">${badge}</span>
-                  <span class="inline-flex items-center rounded-full bg-fuchsia-500/15 px-3 py-1 text-xs font-bold text-fuchsia-200 ring-1 ring-fuchsia-400/20">${c.meta}</span>
-                </div>
-                <p class="mt-2 text-lg font-extrabold tracking-tight truncate">${c.name}</p>
-                <p class="mt-1 text-xs text-zinc-400 line-clamp-2">${c.intro}</p>
-              </div>
+            <div class="flex items-center justify-between gap-3">
+              <span class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200">${badge}</span>
+              <span class="truncate text-xs font-semibold text-zinc-400">${c.meta}</span>
             </div>
 
             <div class="mt-3 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black/20">
               <!-- 이미지: prefix+VARS 규칙(A1 기본) -->
-              <img src="${thumb}" alt="${c.name} 썸네일" class="h-40 w-full object-cover group-hover:scale-[1.02] transition" loading="lazy" />
+              <img src="${thumb}" alt="${c.name} 썸네일" class="h-44 w-full object-cover transition group-hover:scale-[1.02]" loading="lazy" />
             </div>
 
-            <div class="mt-3 flex flex-wrap gap-2">
-              <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-200 ring-1 ring-white/10">말투: ${c.speech}</span>
+            <div class="mt-4">
+              <p class="text-lg font-extrabold tracking-tight">${c.name}</p>
+              <p class="mt-2 text-sm leading-6 text-zinc-300 line-clamp-3">${c.intro}</p>
             </div>
           </div>
         </button>
@@ -592,7 +543,7 @@
 
     function setDetail(c) {
       document.getElementById("dName").textContent = c.name;
-      document.getElementById("dMeta").textContent = `${c.meta}`;
+      document.getElementById("dMeta").textContent = c.meta || "-";
       document.getElementById("dIntro").textContent = c.intro || "-";
 
       const hero = (c.imgs && c.imgs.A1) ? c.imgs.A1 : "https://placehold.co/900x900/png?text=Character";
@@ -609,7 +560,7 @@
       const tagsEl = document.getElementById("dTags");
       const tags = Array.isArray(c.hashtags) ? c.hashtags : [];
       tagsEl.innerHTML = tags.map(t => `
-        <span class="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200 ring-1 ring-white/10">${t}</span>
+        <span class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200">${t}</span>
       `).join("");
     }
 
@@ -622,19 +573,12 @@
           if (!c) return;
           setDetail(c);
 
-          // scroll to detail on mobile
-          if (window.innerWidth < 768) {
-            window.scrollTo({ top: btn.offsetTop - 16, behavior: "smooth" });
-          }
-
-          // visual selected
           btns.forEach(b => b.classList.remove("ring-2", "ring-fuchsia-400/50"));
           btn.classList.add("ring-2", "ring-fuchsia-400/50");
         });
       });
     }
 
-    // Filter buttons
     const filterBtns = document.querySelectorAll(".filterBtn");
     filterBtns.forEach(b => {
       b.addEventListener("click", () => {
@@ -645,7 +589,6 @@
       });
     });
 
-    // Counts
     function setCounts() {
       const total = characters.length;
       const f = characters.filter(c => c.sex === "F").length;
@@ -655,11 +598,9 @@
       document.getElementById("countM").textContent = m + "명";
     }
 
-    // init
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
     setCounts();
     renderCards("ALL");
-    // default select first
     setDetail(characters[0]);
   </script>
 </body>
