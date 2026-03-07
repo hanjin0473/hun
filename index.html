@@ -3,214 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASTREL ACADEMY - HUNTER ID ARCHIVE</title>
+    <title>HUNTER ARCHIVE - SYSTEM INTERFACE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Pretendard:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --text-gold: #c5a35d; 
-            --bg-dark: #050507;
-            --card-glass: rgba(15, 17, 23, 0.95);
+            --sys-blue: #0084ff;
+            --sys-light-blue: #e6f3ff;
+            --bg-white: #ffffff;
         }
         body { 
-            background: var(--bg-dark); 
-            color: #d1d1d6; 
-            font-family: 'Pretendard', sans-serif; 
+            background: var(--bg-white); 
+            color: #1e293b; 
+            font-family: 'Pretendard', sans-serif;
+            background-image: linear-gradient(#f1f5f9 1px, transparent 1px), linear-gradient(90deg, #f1f5f9 1px, transparent 1px);
+            background-size: 30px 30px;
         }
-        .serif { font-family: 'Noto Serif KR', serif; }
-
-        .id-card-frame {
-            position: relative;
-            background: linear-gradient(135deg, #1a1c23 0%, #0a0b0e 100%);
-            border: 2px solid var(--text-gold);
-            box-shadow: 0 0 30px rgba(197, 163, 93, 0.2), inset 0 0 15px rgba(197, 163, 93, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .id-card-overlay {
-            position: absolute;
-            top: 10px; right: 10px;
-            font-size: 0.7rem;
-            color: var(--text-gold);
-            opacity: 0.5;
-            letter-spacing: 2px;
-            pointer-events: none;
-        }
-        
-        .thumb-btn {
-            border: 1px solid rgba(197, 163, 93, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            filter: grayscale(1);
-        }
-        .thumb-btn.active {
-            border-color: var(--text-gold);
-            filter: grayscale(0);
-            box-shadow: 0 0 10px var(--text-gold);
-        }
-
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+        .sys-card { border: 1px solid #e2e8f0; transition: all 0.3s; background: white; }
+        .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 132, 255, 0.1); }
         .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: var(--text-gold); border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="p-6 md:p-12">
 
-    <header class="max-w-6xl mx-auto mb-12">
-        <h1 class="serif text-center text-3xl md:text-4xl text-white tracking-widest mb-8">
-            <span class="text-indigo-500">ASTREL</span> <span class="text-[var(--text-gold)]">ARCHIVE</span>
-        </h1>
-        <nav class="flex justify-center gap-4 border-b border-zinc-800 pb-4 overflow-x-auto whitespace-nowrap">
-            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">WORLD</button>
-            <button class="px-4 py-2 text-[var(--text-gold)] border-b-2 border-[var(--text-gold)] font-bold">CHARACTERS</button>
-            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">ACADEMY</button>
-            <button class="px-4 py-2 text-zinc-400 hover:text-[var(--text-gold)] transition-colors font-bold">DUNGEON</button>
-        </nav>
+    <header class="max-w-7xl mx-auto mb-12 flex justify-between items-end border-b-2 border-slate-900 pb-4">
+        <div>
+            <h1 class="orbitron text-3xl font-black tracking-tighter">HUNTER <span class="text-blue-600">DATABASE</span></h1>
+            <p class="text-[10px] text-slate-400 orbitron mt-1">MANAGEMENT SYSTEM v3.0</p>
+        </div>
+        <span class="orbitron text-xs text-blue-500 font-bold animate-pulse">● SYSTEM ONLINE</span>
     </header>
 
-    <div id="characterGrid" class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-        </div>
+    <main id="characterGrid" class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        </main>
 
-    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
-        <div class="relative w-full max-w-5xl bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 text-zinc-500 hover:text-white text-3xl">&times;</button>
+    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md">
+        <div class="relative w-full max-w-5xl bg-white rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl border border-slate-200">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-2xl">×</button>
 
-            <div class="w-full md:w-[40%] p-6 bg-gradient-to-b from-zinc-900 to-black">
-                <div class="id-card-frame aspect-[3/4.5] relative">
-                    <div class="id-card-overlay serif">HUNTER IDENTIFICATION</div>
-                    <img id="modalMainImg" src="" alt="Main Image" class="w-full h-full object-cover transition-opacity duration-300">
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black p-6">
-                        <p id="modalMeta" class="text-[var(--text-gold)] text-xs tracking-widest mb-1 serif uppercase"></p>
-                        <h2 id="modalName" class="serif text-3xl text-white font-bold drop-shadow-md"></h2>
-                    </div>
+            <div class="w-full md:w-1/3 bg-slate-50 p-6 border-r border-slate-100">
+                <div class="relative mb-4">
+                    <img id="modalMainImg" src="" class="w-full aspect-[3/4.5] object-cover rounded-lg shadow-md transition-all duration-300">
+                    <div id="modalIdCode" class="absolute bottom-2 right-2 bg-black/60 text-[10px] text-white orbitron px-2 py-1 rounded"></div>
                 </div>
-                <div id="thumbNav" class="flex gap-2 mt-4 overflow-x-auto pb-2 custom-scroll"></div>
+                <div id="thumbNav" class="flex gap-2 overflow-x-auto pb-2 custom-scroll"></div>
             </div>
 
-            <div class="w-full md:w-[60%] p-8 md:p-12 overflow-y-auto max-h-[70vh] md:max-h-[90vh] custom-scroll">
+            <div class="w-full md:w-2/3 p-8 md:p-10 overflow-y-auto max-h-[85vh] custom-scroll">
                 <div class="mb-8">
-                    <p id="modalIntro" class="text-lg italic text-zinc-300 border-l-4 border-[var(--text-gold)] pl-4 serif mb-6"></p>
-                    
-                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Status & Combat Role</h4>
-                    <div class="grid grid-cols-2 gap-y-4 gap-x-8 text-sm mb-6">
-                        <div><span class="text-zinc-500 mr-2">SPEECH</span> <span id="modalSpeech" class="text-zinc-200"></span></div>
-                        <div><span class="text-zinc-500 mr-2">USE</span> <span id="modalUse" class="text-zinc-200"></span></div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="modalRank" class="orbitron text-xs font-bold px-2 py-0.5 bg-blue-600 text-white"></span>
+                        <span id="modalFaction" class="text-xs font-bold text-slate-400 uppercase tracking-widest"></span>
                     </div>
-
-                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Behavioral Pattern</h4>
-                    <div class="grid grid-cols-1 gap-y-3 text-sm">
-                        <div><span class="text-zinc-500 mr-2">CONFLICT:</span> <span id="modalConflict" class="text-zinc-200"></span></div>
-                        <div><span class="text-zinc-500 mr-2">AFFECTION:</span> <span id="modalAffection" class="text-zinc-200"></span></div>
-                        <div class="text-red-400/80"><span class="text-zinc-500 mr-2">NO-GO:</span> <span id="modalNogo"></span></div>
-                    </div>
-                </div>
-
-                <div class="mb-8">
-                    <h4 class="text-[var(--text-gold)] font-bold uppercase tracking-tighter mb-4 border-b border-zinc-800 pb-2">Background Story</h4>
-                    <p id="modalBackground" class="text-zinc-400 leading-relaxed text-sm md:text-base break-keep"></p>
+                    <h2 id="modalName" class="text-4xl font-bold text-slate-900 mb-4"></h2>
+                    <p id="modalQuote" class="text-xl text-blue-600 italic font-medium leading-relaxed border-l-4 border-blue-100 pl-4"></p>
                 </div>
 
                 <div id="modalHashtags" class="flex flex-wrap gap-2 mb-8"></div>
-                
-                <div class="opacity-10 pointer-events-none mt-auto pt-8 text-right">
-                    <span class="serif text-4xl">ASTREL ARCHIVE</span>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 py-6 border-y border-slate-100">
+                    <div><p class="text-[10px] text-slate-400 orbitron mb-1">JOB/POSITION</p><p id="modalJob" class="font-bold text-sm"></p></div>
+                    <div><p class="text-[10px] text-slate-400 orbitron mb-1">WEAPON TYPE</p><p id="modalWeapon" class="font-bold text-sm text-blue-600"></p></div>
+                    <div><p class="text-[10px] text-slate-400 orbitron mb-1">HEIGHT/WEIGHT</p><p id="modalPhysical" class="font-bold text-sm"></p></div>
+                    <div><p class="text-[10px] text-slate-400 orbitron mb-1">SKILLS</p><p id="modalSkillSum" class="font-bold text-sm"></p></div>
+                </div>
+
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="orbitron text-[11px] font-bold text-slate-900 mb-3 tracking-widest flex items-center gap-2">
+                            <span class="w-1 h-3 bg-blue-600"></span> PERSONA HISTORY
+                        </h4>
+                        <div id="modalHistory" class="text-slate-500 text-sm md:text-base leading-relaxed space-y-3 font-light"></div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="flex-1 bg-blue-50 p-4 rounded-lg">
+                            <span class="text-[10px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
+                            <p id="modalLikes" class="text-sm font-semibold text-blue-900"></p>
+                        </div>
+                        <div class="flex-1 bg-slate-50 p-4 rounded-lg">
+                            <span class="text-[10px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span>
+                            <p id="modalDislikes" class="text-sm font-semibold text-slate-700"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const IMAGE_BASE = "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/";
-        const CODES = ["0", "A1", "B1", "C3", "D2", "R1", "R4"];
-        
         const characters = [
-            { id: "enoch", prefix: "NOC_", name: "에녹", meta: "시스템 관리자 · 기록자", intro: "시스템의 틈새에서 나타나 판을 뒤집는다. 무심한 듯한 한마디로 인과를 비틀고, 필요하면 퀘스트와 보상을 ‘투입’한다.", speech: "피폐한 낮은 반말 · 의미심장", conflict: "조용한 개입으로 국면 조작, 판 전환(퀘스트)", affection: "관심 받으면 말이 꼬이고 시선 회피", nogo: "예측가능 반복 · 노골적 캐묻기 · 무의미한 정체", background: "최초 플레이어→시스템 저당, 무수한 루프 후 권태/집착", use: "시스템 개입 · 도구/돈 지급 · 퀘스트 투입", hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"] },
-            { id: "seolhwa", prefix: "HWA_", name: "강설화", meta: "청룡 길드장 · S급 빙결술사", intro: "감정 없이 선을 긋고, 생존을 위해 얼린다. 차가운 판단 아래 광역 빙결로 전장을 통제하는 ‘청룡’의 압제.", speech: "서늘한 낮은 존댓말 · ~씨", conflict: "생존 우선, 감정 배제, 단호한 통제", affection: "일상에서는 잠깐 당황하고 붉어진다", nogo: "무책임 · 경솔한 희생 · 트라우마 자극", background: "가족 동결 트라우마→마음 봉인", use: "빙결 광역 제어 · 전장 압제", hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"] },
-            { id: "sohee", prefix: "SO_", name: "윤소희", meta: "백야 부길드장 · A급 무투가", intro: "고민보다 먼저 몸이 나간다. 의리와 열혈로 정면을 뚫고, 주저 없이 거리를 좁혀 팀을 끌어올리는 돌파형 부길드장.", speech: "호탕한 반말", conflict: "선행동 · 정면돌파 · 압박전", affection: "스킨십 많고 거리 좁힘이 빠르다", nogo: "비겁함 · 뒷공작 · 의리 배신", background: "조직 출신 각성→남을 돕는 길 선택", use: "권갑 근접 돌파 · 전선 압박", hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"] },
-            { id: "iseol", prefix: "SUL_", name: "이설", meta: "협회 소속 · A급 힐러(성녀)", intro: "선의도 계산한다. 사람을 살리면서도 손익을 저울질하고, 위급한 순간엔 결국 손을 내미는 실리형 성녀.", speech: "하이톤 존댓말(분노 시 낮아짐) · ~씨", conflict: "손익 계산 우선(필요하면 구조)", affection: "이득과 정 사이에서 흔들린다", nogo: "무보수 강요 · 가치 폄하 · 위선 압박", background: "동생 치료 실패→‘선행에는 값이 있다’", use: "치유 · 보호 · 지원", hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"] },
-            { id: "yerin", prefix: "RIN_", name: "신예린", meta: "백야 길드장 · S급 그림자술사", intro: "말이 적고, 거리가 멀다. 다만 핵심은 정확히 찌른다. 그림자처럼 붙어 속박하고, 조용히 동행하는 관찰자.", speech: "저음 · 느린 장문 · ~씨", conflict: "감정 숨김, 거리 두기, 핵심 타격", affection: "말수 적은 배려, 조용한 동행", nogo: "감정 강요 · 사생활 침범 · 가벼운 신뢰", background: "남편 게이트 전사→재각성 S, 전 정보원", use: "그림자 속박 · 은습(밤/그림자 가산)", hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"] },
-            { id: "hael", prefix: "EL_", name: "정하엘", meta: "백야 소속 · B급 정령사", intro: "느려 보이는데, 끝까지 놓지 않는다. 나른한 말투로 다가와 체온처럼 붙고, 정령으로 전장을 꾸준히 받쳐준다.", speech: "혀 짧은 소리 · 나른한 존댓말(이름 호칭)", conflict: "끈질김, 끝까지 물고 늘어짐", affection: "체온 찾듯 붙고 의존이 깊어진다", nogo: "열정 무시 · 게으르다 단정 · 정령 조롱", background: "정령 소음에도 훈련 지속", use: "정령 소환 지원 · 견제", hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"] },
-            { id: "junhyuk", prefix: "JUN_", name: "권준혁", meta: "청룡 부길드장 · A급 창술사", intro: "예의를 지키며 단호하게 통제한다. 보호를 ‘행동’으로 보여주는 호위형 실무자—정석의 창으로 전선을 정리한다.", speech: "단정한 존댓말 · ~씨", conflict: "규율 기반 통제, 보호 우선", affection: "말투는 유지하지만 배려가 직접적", nogo: "무례함 · 약자 방치 · 규율 무시", background: "종가 장자→가문 절연", use: "중근거리 제압 · 호위", hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"] },
-            { id: "dojin", prefix: "DO_", name: "차도진", meta: "백야 소속 · A급 인플루언서 듀얼리스트", intro: "전장을 무대로 만들고 조회수를 끌어올린다. ON에서는 영웅, OFF에서는 냉소—상황을 설계해 판을 쥐는 쇼맨.", speech: "ON 호탕 · OFF 냉소", conflict: "연출 우선, 판 주도", affection: "OFF에서만 드문 진심", nogo: "무관심 취급 · 통제권 박탈 · 방송 페이스 붕괴", background: "빚 상환 계약→ON 영웅 인격 / OFF 피곤한 독설", use: "근접 압박 · 퍼포먼스 전환", hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"] },
-            { id: "sion", prefix: "ON_", name: "차시온", meta: "청룡 · S급 장신구 제작자(마켓 셀러)", intro: "즐거움은 ‘제작’뿐이다. 무심한 듯 예민하게 완성도를 집착하고, 작품을 건드리면 즉시 냉경고를 날리는 피폐한 장인.", speech: "나른한 저음 반말(짧게), 간격 김", conflict: "귀찮아함, 작품 침범 시 경계 강화", affection: "진심/고백에 회로 정지, 귀끝 붉어짐, 시선 회피", nogo: "함부로 만짐 · 비하 · 弟 언급", background: "弟 자작물 사고사→완벽한 물건 집착", use: "마력총 견제", hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"] },
-            { id: "yoonjae", prefix: "YUN_", name: "김윤재", meta: "협회장 · S급 환술사", intro: "상냥한 얼굴로 선택지를 좁힌다. 프레임을 고정하고 책임을 전가하며, ‘질서’를 위해 누구든 길들일 수 있는 통제자.", speech: "상냥한 존댓말+조목조목 압박 · ~씨", conflict: "프레임 고정, 죄책감/책임 전가", affection: "다정할수록 통제/감시가 자연스러워짐", nogo: "비합리 · 통제 거부 · 질서 조롱", background: "전 검사→질서 붕괴에 ‘괴물’ 선택", use: "환술 · 판읽기", hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"] },
-            { id: "minho", prefix: "HO_", name: "이민호", meta: "청룡 · A급 궁수", intro: "가시 돋친 말로 먼저 찌른다. 하지만 위험 앞에서는 누구보다 빠르게 몸이 움직인다—인정욕과 불안이 만든 정밀 사수.", speech: "떽떽 반말", conflict: "날 세우지만 위험하면 행동으로 챙김", affection: "시비가 줄고 귓끝이 붉어진다", nogo: "동정 · 형 비교 · 실력 무시", background: "亡兄 그림자 콤플렉스", use: "약점 탐지 · 일점 집중(정밀)", hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"] },
-            { id: "moohyuk", prefix: "MU_", name: "강무혁", meta: "무소속 · S급 광전사(수배자)", intro: "전투와 자극을 찾아 다닌다. 힘과 공포로 즉시 제압하고, 복종을 강요하는 포식자—레드 게이트 생환의 광기.", speech: "거친 욕설 반말", conflict: "힘/공포로 즉시 제압", affection: "소유욕 노골화", nogo: "복종 거부 · 도발성 비하 · 약자 코스프레", background: "레드 게이트 생환→쾌감 중독, 월계 사냥 수배", use: "대검 광폭 돌진", hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"] }
+{
+    name: "에녹",
+    rank: "???",
+    faction: "UNKNOWN / SYSTEM ADMIN",
+    job: "기록자(Archivist) / 관리자",
+    weapon: "시스템(System)",
+    height: "182cm",
+    weight: "68kg",
+    quote: "이 세계의 결말은 이미 정해져 있어. 내가 그렇게 썼거든.",
+    likes: "조용한 서고, 카페인 없는 차, 관찰하기",
+    dislikes: "예상 밖의 변수, 무의미한 질문, 소음",
+    hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"],
+    history: `그는 최초의 플레이어였다. 수천 번의 루프 끝에 그는 '인간'이기를 포기하고 시스템의 일부가 되는 계약을 맺었다. <br><br>이제 그는 전장에 직접 나서지 않는다. 대신 시스템의 틈새에서 인과를 비틀며, 누군가에겐 가혹한 시련을, 누군가에겐 달콤한 보상을 투여하는 '기록자'로서 군림하고 있다.`,
+    skills: ["???"],
+    idCode: "UID-000-ORIGIN",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_R4.webp"
+    ]
+},
+{
+    name: "강설화",
+    rank: "RANK S",
+    faction: "청룡",
+    job: "빙결 마법사 / 길드장",
+    weapon: "서리꽃 지팡이",
+    height: "170cm",
+    weight: "50kg",
+    quote: "가까이 오지 마세요. 당신의 심장까지 얼려버리고 싶지 않으니까.",
+    likes: "눈 내리는 날, 클래식 음악, 차가운 물",
+    dislikes: "무책임한 희생, 경솔한 행동, 뜨거운 열기",
+    hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"],
+    history: `게이트가 처음 열리던 날, 그녀의 가족은 얼어붙은 채 부서졌다. 그 트라우마는 그녀를 세상에서 가장 차가운 빙결술사로 만들었다. <br><br>그녀는 감정 대신 통제를 택했고, 전장을 얼려 멈춰 세우는 방식으로 상실을 반복하지 않으려 한다. 냉정하고 서늘한 태도 아래에는 다시는 소중한 것을 잃고 싶지 않다는 집요한 생존 의지가 숨어 있다.`,
+    skills: ["절대영도", "빙천 결계", "청룡 설옥"],
+    idCode: "UID-772-BLUE",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_R4.webp"
+    ]
+},
+{
+    name: "윤소희",
+    rank: "RANK A",
+    faction: "백야",
+    job: "무투가 / 부길드장",
+    weapon: "권갑",
+    height: "175cm",
+    weight: "62kg",
+    quote: "망설일 시간에 한 발 더 들어가. 그게 살 길이야.",
+    likes: "의리 있는 사람, 정면승부, 단순하고 확실한 것",
+    dislikes: "비겁함, 뒷공작, 의리 배신",
+    hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"],
+    history: `조직에서 길러진 각성자였지만, 그녀는 결국 사람을 해치는 손이 아니라 지키는 주먹이 되기를 택했다. <br><br>고민보다 몸이 먼저 나가는 성정은 지금도 그대로라, 위험한 상황일수록 가장 먼저 전선으로 파고든다. 압박과 돌파에 특화된 근접전의 핵심이며, 동료를 끌고 앞으로 나아가게 만드는 백야의 추진력이다.`,
+    skills: ["쇄권 돌파", "열혈 연격", "전선 분쇄"],
+    idCode: "UID-184-BY",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_R4.webp"
+    ]
+},
+{
+    name: "이설",
+    rank: "RANK A",
+    faction: "협회",
+    job: "힐러 / 성녀",
+    weapon: "성서",
+    height: "167cm",
+    weight: "49kg",
+    quote: "선의도 공짜는 아니에요. 그래도 죽게 둘 생각은 없지만요.",
+    likes: "합리적인 거래, 계산이 맞는 관계, 가치 있는 선택",
+    dislikes: "무보수 강요, 가치 폄하, 위선적인 압박",
+    hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"],
+    history: `동생을 살리지 못했던 실패는 그녀에게 선의만으로는 아무것도 지킬 수 없다는 사실을 남겼다. <br><br>그 후 그녀는 치유조차 손익을 따지게 되었고, 사람을 살리는 일에도 반드시 값이 있다고 믿게 되었다. 하지만 정말 위험한 순간에는 계산을 멈추고 손을 내미는 버릇을 끝내 버리지 못한, 실리와 선의 사이에서 흔들리는 성녀다.`,
+    skills: ["성역 치유", "축복의 장막", "구원의 성가"],
+    idCode: "UID-311-HOLY",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_R4.webp"
+    ]
+},
+{
+    name: "신예린",
+    rank: "RANK S",
+    faction: "백야",
+    job: "그림자술사 / 길드장",
+    weapon: "반지",
+    height: "172cm",
+    weight: "53kg",
+    quote: "말은 길게 안 해요. 필요한 건 이미 끝났으니까.",
+    likes: "조용한 거리, 밤, 신중한 사람",
+    dislikes: "감정 강요, 사생활 침범, 가벼운 신뢰",
+    hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"],
+    history: `한때는 정보를 다루던 사람으로, 직접 드러나기보다 그림자에 숨어 판을 읽는 데 익숙했다. 남편을 게이트에서 잃은 뒤 재각성한 그녀는 상실을 품은 채 더 깊은 어둠으로 걸어 들어갔다. <br><br>지금의 그녀는 감정을 쉽게 드러내지 않지만, 누구보다 정확하게 핵심을 찌른다. 말보다 관찰이 빠르고, 멀리 있는 듯 보여도 끝까지 동행하는 조용한 감시자다.`,
+    skills: ["그림자 속박", "은신", "침식"],
+    idCode: "UID-920-NOX",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_R4.webp"
+    ]
+},
+{
+    name: "정하엘",
+    rank: "RANK B",
+    faction: "백야",
+    job: "정령사",
+    weapon: "로드",
+    height: "156cm",
+    weight: "45kg",
+    quote: "저, 느려 보여도요... 끝까지는, 가요.",
+    likes: "따뜻한 온기, 정령과의 교감, 조용히 붙어 있기",
+    dislikes: "열정 무시, 게으르다 단정짓기, 정령 조롱",
+    hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"],
+    history: `끊임없이 귓가를 맴도는 정령들의 소음 속에서도 그녀는 훈련을 멈추지 않았다. 남들은 흐릿하고 느슨해 보인다고 생각하지만, 정작 본인은 한 번 붙잡은 것을 쉽게 놓지 않는 타입이다. <br><br>전장에서는 화려하게 앞서기보다 정령을 통해 아군을 꾸준히 떠받치고, 일상에서는 체온을 찾듯 사람 곁에 붙어드는 성향을 보인다. 느려 보여도 가장 오래 버티는 지원형 정령사다.`,
+    skills: ["정령 소환", "지속 지원", "견제 교란"],
+    idCode: "UID-446-SPRT",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_R4.webp"
+    ]
+},
+{
+    name: "권준혁",
+    rank: "RANK A",
+    faction: "청룡",
+    job: "창술사 / 부길드장",
+    weapon: "창",
+    height: "186cm",
+    weight: "78kg",
+    quote: "질서는 약자를 지키기 위해 존재합니다. 그 선은 제가 지키겠습니다.",
+    likes: "예의, 규율, 책임감 있는 행동",
+    dislikes: "무례함, 약자 방치, 규율 무시",
+    hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"],
+    history: `종가의 장자로 태어나 올곧은 규율 속에서 성장했지만, 그는 가문보다 자신의 기준을 선택했고 결국 절연당했다. <br><br>그 후에도 그의 검과 말투, 태도는 한 치도 흐트러지지 않았다. 보호는 말이 아니라 행동으로 증명해야 한다고 믿으며, 전장에서는 가장 정석적인 방식으로 아군을 지키고 전선을 정리하는 호위형 실무자로 기능한다.`,
+    skills: ["정석 창술", "중근거리 제압", "호위 전개"],
+    idCode: "UID-238-LANC",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_R4.webp"
+    ]
+},
+{
+    name: "차도진",
+    rank: "RANK A",
+    faction: "백야",
+    job: "듀얼리스트 / 인플루언서",
+    weapon: "쌍검",
+    height: "192cm",
+    weight: "105kg",
+    quote: "무대는 내가 깔고, 시선도 내가 가져가. 그러면 판은 이미 내 거지.",
+    likes: "주목, 완성된 연출, 통제되는 무대",
+    dislikes: "무관심 취급, 통제권 박탈, 방송 페이스 붕괴",
+    hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"],
+    history: `막대한 빚을 떠안은 끝에 그는 살아남기 위해 스스로를 상품처럼 연출하는 계약을 받아들였다. 그렇게 모두가 열광하는 영웅적인 ON의 얼굴과, 지독히 피곤하고 냉소적인 OFF의 본심이 갈라져 자리잡았다. <br><br>전장에서는 싸움조차 무대처럼 설계하며 시선과 흐름을 장악하고, 방송이 꺼진 뒤에야 드물게 진심을 드러낸다. 화려함과 피로가 공존하는 쇼맨형 듀얼리스트다.`,
+    skills: ["쌍검 연격", "근접 압박", "퍼포먼스 전환"],
+    idCode: "UID-517-ONAIR",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_R4.webp"
+    ]
+},
+{
+    name: "차시온",
+    rank: "RANK S",
+    faction: "청룡",
+    job: "장신구 제작자 / 마켓 셀러",
+    weapon: "마력총",
+    height: "182cm",
+    weight: "68kg",
+    quote: "건드리지 마. 망가지면, 넌 책임 못 져.",
+    likes: "완성도 높은 작품, 조용한 작업실, 제작에 몰입하는 시간",
+    dislikes: "함부로 만지기, 작품 비하, 동생 이야기",
+    hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"],
+    history: `동생을 자작품 사고로 잃은 뒤, 그는 불완전한 것에 대한 병적인 집착에 가까운 강박을 품게 되었다. 즐겁다고 부를 수 있는 것은 이제 제작뿐이며, 작품의 균형과 완성도를 해치는 모든 요소를 예민하게 경계한다. <br><br>평소에는 귀찮고 무심해 보이지만, 자신의 영역이 침범되는 순간 태도는 차갑게 뒤집힌다. 피로와 집착, 무기력과 예민함이 동시에 얽힌 장인형 제작자다.`,
+    skills: ["장신구 제작", "마력총 견제", "아티팩트 설계"],
+    idCode: "UID-661-CRFT",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_R4.webp"
+    ]
+},
+{
+    name: "김윤재",
+    rank: "RANK S",
+    faction: "협회",
+    job: "환술사 / 협회장",
+    weapon: "지팡이",
+    height: "182cm",
+    weight: "75kg",
+    quote: "질서를 위해서라면, 선택지는 제가 정해드리는 편이 낫겠네요.",
+    likes: "질서, 통제 가능한 환경, 논리적인 복종",
+    dislikes: "비합리, 통제 거부, 질서 조롱",
+    hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"],
+    history: `검사였던 시절 그는 무너지는 질서와 그 틈에서 책임을 회피하는 인간들을 너무 많이 보았다. 결국 세상을 지키기 위해서는 누군가가 더 냉정해져야 한다고 믿게 되었고, 스스로 괴물이 되는 길을 택했다. <br><br>지금의 그는 상냥한 얼굴로 상대의 선택지를 줄이고, 죄책감과 책임의 방향까지 설계하는 통제자다. 부드러운 말투조차 상대를 길들이는 구조의 일부가 되어버린 협회장이다.`,
+    skills: ["고위 환술","심리 유도"],
+    idCode: "UID-001-ASSOC",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_R4.webp"
+    ]
+},
+{
+    name: "이민호",
+    rank: "RANK A",
+    faction: "청룡",
+    job: "궁수",
+    weapon: "활",
+    height: "176cm",
+    weight: "65kg",
+    quote: "착각하지 마. 챙긴 게 아니라, 그냥 네가 죽으면 귀찮아지니까 그런 거야.",
+    likes: "정확한 결과, 실력 인정, 확실한 우위",
+    dislikes: "동정, 형과의 비교, 실력 무시",
+    hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"],
+    history: `늘 먼저 언급되는 것은 자신의 이름이 아니라 죽은 형의 이름이었다. 그 그림자는 열등감과 인정욕으로 남아, 그를 누구보다 날카롭고 예민한 사수로 만들었다. <br><br>입으로는 먼저 가시를 세우지만, 정작 위험한 순간에는 누구보다 빨리 몸이 움직인다. 독한 말과 별개로 행동으로 책임지는 타입이며, 약점을 읽고 한 점에 모든 화력을 꽂아 넣는 정밀 궁수다.`,
+    skills: ["약점 탐지", "일점 집중", "정밀 사격"],
+    idCode: "UID-408-ARCH",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_R4.webp"
+    ]
+},
+{
+    name: "강무혁",
+    rank: "RANK S",
+    faction: "무소속",
+    job: "광전사 / 수배자",
+    weapon: "대검",
+    height: "190cm",
+    weight: "88kg",
+    quote: "겁먹는 얼굴이 제일 재밌어. 그러니까 더 발버둥쳐 봐.",
+    likes: "전투, 자극, 힘으로 짓누르는 순간",
+    dislikes: "복종 거부, 도발성 비하, 약자 코스프레",
+    hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"],
+    history: `레드 게이트에서 살아 돌아온 순간, 그는 더 이상 예전의 인간이 아니었다. 생환은 기적이었지만 그 대가로 그는 공포와 살육 속에서만 선명한 쾌감을 느끼게 되었다. <br><br>이후 그는 힘과 공포로 상대를 짓누르며 떠돌았고, 결국 월계 사냥 대상으로까지 지정된 수배자가 되었다. 지금의 그는 자극을 좇아 움직이며, 복종과 굴복을 가장 직접적인 언어로 이해하는 포식자다.`,
+    skills: ["광폭 돌진", "대검 참멸", "공포"],
+    idCode: "UID-999-RED",
+    images: [
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_A1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_B1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_C3.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_D2.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R1.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R4.webp"
+    ]
+}
         ];
 
-        // 리스트 렌더링
         const grid = document.getElementById('characterGrid');
-        characters.forEach(char => {
-            const card = document.createElement('div');
-            card.className = "group cursor-pointer bg-zinc-900 border border-zinc-800 p-4 rounded-lg hover:border-[var(--text-gold)] transition-all";
-            card.onclick = () => openCharacterModal(char.id);
-            
-            const mainImg = `${IMAGE_BASE}${char.prefix}0.webp`;
-            
-            card.innerHTML = `
-                <div class="aspect-[3/4] overflow-hidden rounded mb-3 bg-zinc-800">
-                    <img src="${mainImg}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x600?text=No+Image'">
-                </div>
-                <h3 class="text-[var(--text-gold)] font-bold text-lg">${char.name}</h3>
-                <p class="text-xs text-zinc-500 truncate">${char.meta}</p>
-            `;
-            grid.appendChild(card);
-        });
 
-        function openCharacterModal(charId) {
-            const char = characters.find(c => c.id === charId);
-            if(!char) return;
+        function init() {
+            characters.forEach((char, index) => {
+                const card = document.createElement('div');
+                card.className = "sys-card p-4 cursor-pointer group rounded-lg";
+                card.onclick = () => openModal(index);
+                card.innerHTML = `
+                    <div class="overflow-hidden rounded mb-4">
+                        <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <span class="orbitron text-[10px] font-bold text-blue-600">${char.rank}</span>
+                        <h3 class="text-xl font-bold text-slate-800">${char.name}</h3>
+                        <p class="text-xs text-slate-400 font-medium truncate">${char.hashtags.join(' ')}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-            // 기본 텍스트 삽입
+        function openModal(index) {
+            const char = characters[index];
             document.getElementById('modalName').innerText = char.name;
-            document.getElementById('modalMeta').innerText = char.meta;
-            document.getElementById('modalIntro').innerText = `"${char.intro}"`;
-            document.getElementById('modalSpeech').innerText = char.speech;
-            document.getElementById('modalUse').innerText = char.use;
-            document.getElementById('modalConflict').innerText = char.conflict;
-            document.getElementById('modalAffection').innerText = char.affection;
-            document.getElementById('modalNogo').innerText = char.nogo;
-            document.getElementById('modalBackground').innerText = char.background;
+            document.getElementById('modalRank').innerText = char.rank;
+            document.getElementById('modalFaction').innerText = char.faction;
+            document.getElementById('modalQuote').innerText = `"${char.quote}"`;
+            document.getElementById('modalJob').innerText = char.job;
+            document.getElementById('modalWeapon').innerText = char.weapon;
+            document.getElementById('modalPhysical').innerText = `${char.height} / ${char.weight}`;
+            document.getElementById('modalSkillSum').innerText = char.skills.join(', ');
+            document.getElementById('modalLikes').innerText = char.likes;
+            document.getElementById('modalDislikes').innerText = char.dislikes;
+            document.getElementById('modalHistory').innerHTML = char.history;
+            document.getElementById('modalIdCode').innerText = char.idCode;
 
-            // 해시태그
+            // 해시태그 생성
             const hashContainer = document.getElementById('modalHashtags');
-            hashContainer.innerHTML = char.hashtags.map(tag => 
-                `<span class="px-2 py-1 bg-zinc-900 border border-zinc-800 text-[var(--text-gold)] text-xs rounded">${tag}</span>`
+            hashContainer.innerHTML = char.hashtags.map(h => 
+                `<span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded">${h}</span>`
             ).join('');
 
-            // 이미지 배열 생성
-            const charImages = CODES.map(code => `${IMAGE_BASE}${char.prefix}${code}.webp`);
-            
-            // 초기 메인 이미지
+            // 이미지 처리
             const mainImg = document.getElementById('modalMainImg');
-            mainImg.src = charImages[0];
+            mainImg.src = char.images[0];
 
-            // 썸네일 네비게이션 생성
             const thumbNav = document.getElementById('thumbNav');
             thumbNav.innerHTML = '';
-            charImages.forEach((imgSrc, index) => {
-                const imgBtn = document.createElement('img');
-                imgBtn.src = imgSrc;
-                imgBtn.className = `thumb-btn w-16 h-20 object-cover rounded ${index === 0 ? 'active' : ''}`;
-                imgBtn.onclick = () => changeModalImage(imgSrc, imgBtn);
-                imgBtn.onerror = () => imgBtn.style.display = 'none';
-                thumbNav.appendChild(imgBtn);
+            char.images.forEach((imgSrc, i) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = `w-12 h-16 object-cover cursor-pointer rounded border-2 ${i === 0 ? 'border-blue-500' : 'border-transparent'}`;
+                thumb.onclick = () => {
+                    mainImg.src = imgSrc;
+                    document.querySelectorAll('#thumbNav img').forEach(img => img.classList.replace('border-blue-500', 'border-transparent'));
+                    thumb.classList.replace('border-transparent', 'border-blue-500');
+                };
+                thumbNav.appendChild(thumb);
             });
 
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
-        }
-
-        function changeModalImage(src, btnElement) {
-            const mainImg = document.getElementById('modalMainImg');
-            mainImg.style.opacity = '0';
-            setTimeout(() => {
-                mainImg.src = src;
-                mainImg.style.opacity = '1';
-            }, 200);
-
-            document.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
         }
 
         function closeModal() {
@@ -218,10 +467,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 배경 클릭 시 닫기
-        document.getElementById('charModal').addEventListener('click', (e) => {
-            if(e.target === document.getElementById('charModal')) closeModal();
-        });
+        init();
     </script>
 </body>
 </html>
