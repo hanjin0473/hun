@@ -17,87 +17,153 @@
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
         
-        .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; }
+        /* Tab Styles */
+        .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; white-space: nowrap; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
         
-        .content-section { display: none; }
+        .content-section { display: none; animate: fadeIn 0.4s ease-out; }
         .content-section.active { display: block; }
 
-        .sys-card { 
-            border: 1px solid #e2e8f0; 
-            background: white; 
-            transition: all 0.3s;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom Cards */
+        .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; }
         .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); }
         
+        .gate-card { border-left: 4px solid var(--sys-blue); background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; transition: all 0.2s; }
+        .gate-card:hover { background: #f1f5f9; }
+
         .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
+
+        /* Badge Colors */
+        .rank-s { background: #ef4444; color: white; }
+        .rank-ab { background: #3b82f6; color: white; }
+        .rank-cd { background: #10b981; color: white; }
+        .rank-ef { background: #94a3b8; color: white; }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
     <header class="max-w-7xl mx-auto mb-8 border-b-2 border-slate-900 pb-4">
         <div class="flex justify-between items-end mb-6">
-            <h1 class="orbitron text-xl md:text-3xl font-black">HUNTER <span class="text-blue-600">ARCHIVE</span></h1>
-            <span class="orbitron text-[10px] text-blue-500 font-bold animate-pulse">● SYSTEM ONLINE</span>
+            <h1 class="orbitron text-xl md:text-3xl font-black italic">HUNTER <span class="text-blue-600">ARCHIVE</span></h1>
+            <div class="flex flex-col items-end">
+                <span class="orbitron text-[10px] text-blue-500 font-bold animate-pulse">● SYSTEM ONLINE</span>
+                <span class="text-[9px] text-slate-400 orbitron">V.2.6_MARCH</span>
+            </div>
         </div>
-        <nav class="flex gap-8 orbitron text-xs tracking-widest">
-            <button onclick="switchTab('world')" id="tab-world" class="tab-btn active">WORLD</button>
-            <button onclick="switchTab('characters')" id="tab-characters" class="tab-btn">CHARACTERS</button>
+        <nav class="flex gap-6 md:gap-8 orbitron text-[10px] md:text-xs tracking-widest overflow-x-auto pb-2 custom-scroll">
+            <button onclick="switchTab('world')" id="tab-world" class="tab-btn active">WORLD VIEW</button>
+            <button onclick="switchTab('gates')" id="tab-gates" class="tab-btn">GATE TYPES</button>
+            <button onclick="switchTab('ASSOC')" id="tab-ASSOC" class="tab-btn">ASSOCIATION</button>
+            <button onclick="switchTab('BLUE')" id="tab-BLUE" class="tab-btn">BLUE DRAGON</button>
+            <button onclick="switchTab('WHITE')" id="tab-WHITE" class="tab-btn">WHITE NIGHT</button>
+            <button onclick="switchTab('INDIE')" id="tab-INDIE" class="tab-btn">INDEPENDENT</button>
         </nav>
     </header>
 
     <div class="max-w-7xl mx-auto">
         <main id="section-world" class="content-section active py-4">
-            <article class="bg-white border border-slate-200 p-8 md:p-12 rounded-2xl shadow-sm relative overflow-hidden max-w-4xl mx-auto">
-                <div class="absolute top-0 right-0 p-4 orbitron text-[40px] font-black text-slate-50 opacity-[0.03] select-none uppercase">Classified</div>
-
-                <header class="mb-12 border-l-4 border-blue-600 pl-6">
-                    <h2 class="orbitron text-2xl font-bold text-slate-900 tracking-tighter mb-4">SYNOPSIS: VIOLET SEOUL</h2>
-                    <p class="text-slate-500 italic text-sm leading-relaxed">
-                        "서울의 하늘은 더 이상 푸르지 않다. 점멸하는 게이트의 붉은 빛과 홀로그램이 섞여 기묘한 보랏빛을 띤다.<br>
-                        이곳에서 등급은 곧 계급이며, 법이다. 능력이 자본이 되고, 자본이 다시 능력이 되는 비정한 도시."
-                    </p>
-                </header>
-                
-                <div class="space-y-12">
-                    <section>
-                        <h3 class="orbitron text-xs font-bold text-blue-600 mb-4 flex items-center gap-2">
-                            <span class="w-8 h-[1px] bg-blue-600"></span> 01. RATING SYSTEM
-                        </h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                                <strong class="text-xs text-slate-900 block mb-2">● HUNTER RANK (F ~ S)</strong>
-                                <p class="text-[11px] text-slate-500 leading-5">단순 전투력이 아닌 '현상 개입 범위' 기준. S급은 국가재난급 전력으로 분류됩니다.</p>
-                            </div>
-                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                                <strong class="text-xs text-slate-900 block mb-2">● GATE GRADE</strong>
-                                <p class="text-[11px] text-slate-500 leading-5">단독 공략 시의 '최소 생존 기준'. 현상 왜곡 및 잔재의 변화를 이변 판정의 척도로 삼습니다.</p>
+            <article class="max-w-4xl mx-auto space-y-10">
+                <div class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl relative overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 p-4 orbitron text-[60px] font-black opacity-5 select-none uppercase">Origin</div>
+                    <div class="relative z-10">
+                        <h2 class="orbitron text-3xl font-bold mb-6 border-b border-white/20 pb-4">VIOLET SEOUL: OVERVIEW</h2>
+                        <div class="space-y-6 text-slate-300 leading-relaxed text-sm md:text-base">
+                            <p><strong class="text-blue-400">게이트의 출현:</strong> 어느 날 갑자기 허공에 열린 차원의 통로를 통해 마물들이 쏟아져 나오며 인류는 멸망의 위기에 처했습니다.</p>
+                            <p><strong class="text-blue-400">각성자와 마석:</strong> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 심장 부근에는 강대한 에너지를 품은 <span class="text-white underline decoration-blue-500 underline-offset-4 font-bold">'마석'</span>이 생겨나며, 이는 이들의 힘의 근원이자 생명줄이 됩니다.</p>
+                            <div class="bg-red-500/10 border border-red-500/20 p-4 rounded-xl">
+                                <p class="text-red-400 text-xs font-bold mb-1 italic">⚠️ CLASSIFIED: 비인도적 위협</p>
+                                <p class="text-xs">각성자의 마석은 추출 시 막대한 에너지를 발산하기 때문에, 암시장을 중심으로 타인의 마석을 노리는 '마석 사냥꾼'들이 성행하는 잔혹한 이면이 존재합니다.</p>
                             </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
+
+                <section>
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="h-[1px] flex-1 bg-slate-200"></span>
+                        <h3 class="orbitron text-sm font-bold text-slate-900 tracking-widest uppercase italic">Rating System</h3>
+                        <span class="h-[1px] flex-1 bg-slate-200"></span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                            <span class="orbitron text-xs font-bold rank-s px-2 py-0.5 rounded mb-3 inline-block">S-RANK</span>
+                            <p class="text-xs font-bold text-slate-800 mb-1">국가 전략급 무력</p>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">단독으로 거대 게이트 폐쇄 가능. 인류 최강의 전력.</p>
+                        </div>
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                            <span class="orbitron text-xs font-bold rank-ab px-2 py-0.5 rounded mb-3 inline-block">A~B RANK</span>
+                            <p class="text-xs font-bold text-slate-800 mb-1">숙련된 전투 요원</p>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">주요 길드의 핵심 전력. 전문적인 전술 수행 가능.</p>
+                        </div>
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                            <span class="orbitron text-xs font-bold rank-cd px-2 py-0.5 rounded mb-3 inline-block">C~D RANK</span>
+                            <p class="text-xs font-bold text-slate-800 mb-1">일반 전투 요원</p>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">일반적인 마물 처리가 가능한 수준. 단체 공략 위주.</p>
+                        </div>
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm">
+                            <span class="orbitron text-xs font-bold rank-ef px-2 py-0.5 rounded mb-3 inline-block">E~F RANK</span>
+                            <p class="text-xs font-bold text-slate-800 mb-1">보조 업무 수행</p>
+                            <p class="text-[11px] text-slate-500 leading-relaxed">일반인보다 소폭 강함. 물류 수송 및 보조 담당.</p>
+                        </div>
+                    </div>
+                </section>
             </article>
         </main>
 
-        <main id="section-characters" class="content-section py-4">
-            <div class="mb-8 flex justify-between items-center border-b border-slate-100 pb-4">
-                <h2 class="orbitron text-sm font-bold text-slate-400 tracking-widest uppercase">Registered Awakened List</h2>
-                <span id="totalCount" class="text-[10px] text-slate-300 orbitron">TOTAL: 0 UNITS</span>
-            </div>
-            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        <main id="section-gates" class="content-section py-4">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="mb-8">
+                    <h2 class="orbitron text-2xl font-black text-slate-900 mb-2">GATE CLASSIFICATION</h2>
+                    <p class="text-sm text-slate-400">현실 세계에 발생하는 차원의 균열 형태에 따른 분류 체계</p>
                 </div>
+                
+                <div class="gate-card">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-slate-800">● 일반 게이트 (NORMAL)</h3>
+                        <span class="orbitron text-[10px] text-blue-500 border border-blue-200 px-2 py-0.5 rounded-full">STABLE</span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed">정해진 주기에 따라 마물이 유출되는 일반적인 통로입니다. 관리 기관의 허가 하에 공략이 진행됩니다.</p>
+                </div>
+
+                <div class="gate-card border-l-red-500 bg-red-50">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-red-700">● 브레이크 게이트 (BREAK)</h3>
+                        <span class="orbitron text-[10px] text-red-500 border border-red-200 px-2 py-0.5 rounded-full font-bold">WARNING</span>
+                    </div>
+                    <p class="text-sm text-red-800/70 leading-relaxed font-medium">제한 시간 내에 보스를 처치하지 못해 마물들이 현실 세계로 쏟아져 나오는 최악의 위험 상태입니다. 민간인 피해가 극심합니다.</p>
+                </div>
+
+                <div class="gate-card border-l-purple-500 bg-purple-50">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-purple-700">● 변이 게이트 (MUTATION)</h3>
+                        <span class="orbitron text-[10px] text-purple-500 border border-purple-200 px-2 py-0.5 rounded-full">UNKNOWN</span>
+                    </div>
+                    <p class="text-sm text-purple-800/70 leading-relaxed font-medium">내부 환경이 고정되지 않고 시시각각 변하며, 상식 밖의 위험이 도사리는 특수 구역입니다. 숙련된 헌터조차 생존을 장담할 수 없습니다.</p>
+                </div>
+            </div>
+        </main>
+
+        <main id="section-factions" class="content-section py-4">
+            <div class="mb-10 p-6 bg-slate-900 text-white rounded-xl relative overflow-hidden shadow-lg">
+                <div id="factionIcon" class="absolute -right-4 -top-4 orbitron text-8xl font-black opacity-10 uppercase italic select-none"></div>
+                <h2 id="factionTitle" class="orbitron text-2xl font-black mb-2 tracking-tighter text-blue-400"></h2>
+                <p id="factionDesc" class="text-xs text-slate-300 leading-relaxed max-w-2xl"></p>
+            </div>
+            <div class="mb-6 flex justify-between items-center border-b border-slate-100 pb-2">
+                <h2 class="orbitron text-[10px] font-bold text-slate-400 tracking-widest uppercase">Active Personnel</h2>
+                <span id="factionCount" class="text-[10px] text-slate-300 orbitron font-bold">COUNT: 0</span>
+            </div>
+            <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6"></div>
         </main>
     </div>
 
     <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-0 md:p-4 bg-slate-900/60 backdrop-blur-md">
         <div class="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
             <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-3xl">×</button>
-            
             <div class="w-full md:w-1/3 bg-slate-100 p-4 border-b md:border-b-0 md:border-r border-slate-200 shrink-0">
                 <div class="relative mb-3">
                     <img id="modalMainImg" src="" class="w-full aspect-[3/4] object-cover rounded-lg shadow-md">
@@ -105,7 +171,6 @@
                 </div>
                 <div id="thumbNav" class="flex gap-2 overflow-x-auto pb-2 custom-scroll"></div>
             </div>
-
             <div class="w-full md:w-2/3 p-6 md:p-10 overflow-y-auto custom-scroll">
                 <div class="mb-6">
                     <div class="flex items-center gap-2 mb-2">
@@ -116,16 +181,13 @@
                     <p id="modalQuote" class="text-sm md:text-lg text-blue-600 italic mt-2 border-l-4 border-blue-100 pl-4"></p>
                 </div>
                 <div id="modalHashtags" class="flex flex-wrap gap-1.5 mb-6"></div>
-                
                 <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-slate-100">
                     <div><p class="text-[9px] text-slate-400 orbitron">JOB</p><p id="modalJob" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron">WEAPON</p><p id="modalWeapon" class="font-bold text-xs text-blue-600"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron">PHYSICAL</p><p id="modalPhysical" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron">SKILLS</p><p id="modalSkillSum" class="font-bold text-xs"></p></div>
                 </div>
-                
                 <div id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed space-y-3 mb-6"></div>
-                
                 <div class="flex flex-col sm:flex-row gap-3">
                     <div class="flex-1 bg-blue-50 p-3 rounded-lg">
                         <span class="text-[9px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
@@ -444,30 +506,54 @@
     ]
 }
             ];
-function switchTab(tabId) {
+const factionInfo = {
+            'ASSOC': { title: "헌터 관리 협회 (ASSOCIATION)", desc: "국가 소속의 공식 기관으로 각성자 등록, 게이트 배정, 치안 유지를 담당합니다. 질서와 규율을 최우선으로 합니다.", keyword: "협회" },
+            'BLUE': { title: "청룡 (BLUE DRAGON)", desc: "공격적이고 실전 지향적인 거대 길드입니다. 압도적인 무력을 바탕으로 고난도 게이트 공략을 주도합니다.", keyword: "청룡" },
+            'WHITE': { title: "백야 (WHITE NIGHT)", desc: "정보 수집과 특수 임무에 특화된 정예 조직입니다. 암시장의 흐름을 뒤에서 통제하기도 합니다.", keyword: "백야" },
+            'INDIE': { title: "무소속 (INDEPENDENT)", desc: "어느 단체에도 얽매이지 않고 자유롭게 활동하는 프리랜서들입니다. 경외 혹은 경멸의 대상이 됩니다.", keyword: "무소속" }
+        };
+
+        function switchTab(tabId) {
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(`section-${tabId}`).classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            if (tabId === 'world') {
+                document.getElementById('section-world').classList.add('active');
+            } else if (tabId === 'gates') {
+                document.getElementById('section-gates').classList.add('active');
+            } else {
+                document.getElementById('section-factions').classList.add('active');
+                renderFaction(tabId);
+            }
         }
 
-        function init() {
+        function renderFaction(factionKey) {
+            const info = factionInfo[factionKey];
             const grid = document.getElementById('characterGrid');
-            document.getElementById('totalCount').innerText = `TOTAL: ${characters.length} UNITS`;
-            
-            grid.innerHTML = characters.map((char, index) => `
-                <div class="sys-card p-2 rounded-lg cursor-pointer group" onclick="openModal(${index})">
-                    <div class="overflow-hidden rounded-md mb-2">
-                        <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500" alt="${char.name}">
+            document.getElementById('factionTitle').innerText = info.title;
+            document.getElementById('factionDesc').innerText = info.desc;
+            document.getElementById('factionIcon').innerText = factionKey;
+
+            let filtered = characters.filter(char => char.faction.includes(info.keyword));
+            if(factionKey === 'INDIE') filtered = characters.filter(char => char.faction.includes('무소속') || char.faction.includes('UNKNOWN'));
+
+            document.getElementById('factionCount').innerText = `COUNT: ${filtered.length} UNITS`;
+            grid.innerHTML = filtered.map(char => {
+                const originalIndex = characters.findIndex(c => c.idCode === char.idCode);
+                return `
+                    <div class="sys-card p-2 rounded-lg cursor-pointer group" onclick="openModal(${originalIndex})">
+                        <div class="overflow-hidden rounded-md mb-2">
+                            <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-110 transition-transform duration-500" alt="${char.name}">
+                        </div>
+                        <div class="p-1">
+                            <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
+                            <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
+                            <p class="text-[9px] text-slate-400 mt-0.5 truncate">${char.job}</p>
+                        </div>
                     </div>
-                    <div>
-                        <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
-                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
-                        <p class="text-[9px] text-slate-400 mt-0.5 truncate">${char.hashtags[0]}</p>
-                    </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function openModal(index) {
@@ -485,17 +571,8 @@ function switchTab(tabId) {
             document.getElementById('modalHistory').innerHTML = char.history;
             document.getElementById('modalLikes').innerText = char.likes;
             document.getElementById('modalDislikes').innerText = char.dislikes;
-
-            // 해시태그 생성
-            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => 
-                `<span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-md font-medium">${tag}</span>`
-            ).join('');
-
-            // 썸네일 네비게이션 생성
-            document.getElementById('thumbNav').innerHTML = char.images.map(img => 
-                `<img src="${img}" onclick="document.getElementById('modalMainImg').src='${img}'" class="w-12 h-16 object-cover rounded cursor-pointer hover:border-2 border-blue-500 shrink-0">`
-            ).join('');
-
+            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-md font-medium">${tag}</span>`).join('');
+            document.getElementById('thumbNav').innerHTML = char.images.map(img => `<img src="${img}" onclick="document.getElementById('modalMainImg').src='${img}'" class="w-12 h-16 object-cover rounded cursor-pointer hover:border-2 border-blue-500 shrink-0">`).join('');
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -505,10 +582,7 @@ function switchTab(tabId) {
             document.body.style.overflow = 'auto';
         }
 
-        window.onload = () => {
-            init();
-            switchTab('world');
-        };
+        window.onload = () => { switchTab('world'); };
     </script>
 </body>
 </html>
