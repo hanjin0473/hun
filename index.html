@@ -164,22 +164,40 @@
                         </ul>
                     </div>
 
-                    <div class="p-8 bg-white border border-slate-200 rounded-[2.5rem] space-y-4 shadow-sm md:col-span-2">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <div>
-                                <h3 class="orbitron text-lg font-bold text-slate-800 uppercase tracking-widest">Hunter Rank</h3>
-                                <p class="text-xs text-slate-500 mt-1">당신의 등급은 곧, 이 세계에서 허용된 힘의 크기입니다.</p>
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold text-slate-400">F-E: 생존 보조</span>
-                                <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold text-slate-600">D-C: 정예 보병</span>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-bold">B-A: 전장 지배자</span>
-                                <span class="px-3 py-1 bg-slate-900 text-white rounded-full text-[10px] font-bold animate-pulse">S: 인외(人外)의 영역</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="p-8 md:p-12 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm md:col-span-2">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        
+        <div class="flex flex-col items-center justify-center p-8 bg-slate-50 rounded-[2rem] border border-slate-100 group transition-all">
+            <span class="orbitron text-[10px] font-bold text-slate-400 mb-2 tracking-widest">RANK</span>
+            <span class="text-3xl font-black text-slate-300 group-hover:text-slate-500 transition-colors">F - E</span>
+            <div class="h-px w-4 bg-slate-200 my-3"></div>
+            <span class="text-xs font-bold text-slate-400">생존 보조</span>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-8 bg-slate-100 rounded-[2rem] border border-slate-200 group transition-all">
+            <span class="orbitron text-[10px] font-bold text-slate-500 mb-2 tracking-widest">RANK</span>
+            <span class="text-3xl font-black text-slate-600">D - C</span>
+            <div class="h-px w-4 bg-slate-300 my-3"></div>
+            <span class="text-xs font-bold text-slate-500">정예 보병</span>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-8 bg-blue-50 rounded-[2rem] border border-blue-100 group transition-all hover:bg-blue-100">
+            <span class="orbitron text-[10px] font-bold text-blue-400 mb-2 tracking-widest">RANK</span>
+            <span class="text-3xl font-black text-blue-600">B - A</span>
+            <div class="h-px w-6 bg-blue-200 my-3"></div>
+            <span class="text-xs font-black text-blue-600">전장 지배자</span>
+        </div>
+
+        <div class="flex flex-col items-center justify-center p-8 bg-slate-900 rounded-[2rem] border border-slate-800 group transition-all hover:scale-105 shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-600/10 animate-pulse"></div>
+            <span class="orbitron text-[10px] font-bold text-blue-400 mb-2 tracking-widest relative z-10">LEGEND</span>
+            <span class="text-4xl font-black text-white relative z-10">S</span>
+            <div class="h-px w-8 bg-blue-500 my-3 relative z-10 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+            <span class="text-xs font-black text-blue-300 relative z-10 tracking-tighter">인외(人外)의 영역</span>
+        </div>
+
+    </div>
+</div>
         </section>
     </div>
 </main>
