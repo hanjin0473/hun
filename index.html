@@ -105,11 +105,30 @@
         
         <section class="bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden shadow-2xl">
             <div class="absolute top-0 right-0 p-4 orbitron text-5xl md:text-7xl font-black opacity-5 uppercase select-none">Origin</div>
+            
             <h2 class="text-xl md:text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest flex items-center gap-3">
                 <span class="w-8 h-[1px] bg-blue-400"></span> 세계관 시놉시스
             </h2>
-            <div class="text-slate-300 text-sm md:text-lg leading-relaxed font-medium italic">
-                <p>"어느 날 허공을 가르고 나타난 게이트와 마물, 그에 맞서 심장 속 마석의 힘을 깨운 각성자들의 위태로운 공존이 시작되었습니다."</p>
+            
+            <div class="space-y-6">
+                <div class="text-slate-300 text-sm md:text-lg leading-relaxed font-medium italic border-l-2 border-blue-500/30 pl-4">
+                    <p>"게이트가 출현하고 몬스터가 현실을 침범한 날, 세상은 완전히 뒤바뀌었다. 그리고 일부 인간은 각성자가 되어, 재앙에 맞설 유일한 존재가 되었다."</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+                    <div class="p-5 bg-white/5 rounded-2xl border border-white/10 group hover:border-blue-500/30 transition-all">
+                        <h4 class="text-blue-400 font-bold text-sm mb-2 flex items-center gap-2">
+                            <span class="w-1 h-3 bg-blue-400 rounded-full"></span> 각성자 : 마석의 숙주
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">각성자의 심장부에는 초월적 힘의 결정체인 '마석'이 박혀 있습니다. 이는 강력한 에너지원이자 고가에 거래되는 화폐의 가치를 지닙니다.</p>
+                    </div>
+                    <div class="p-5 bg-red-950/20 rounded-2xl border border-red-500/20 group hover:border-red-500/40 transition-all">
+                        <h4 class="text-red-400 font-bold text-sm mb-2 flex items-center gap-2">
+                            <span class="w-1 h-3 bg-red-400 rounded-full"></span> 약탈자 : 헌터 사냥꾼
+                        </h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">마석을 강제로 적출하기 위해 헌터를 납치하거나 살해하는 무법 집단입니다. 그들에게 헌터는 영웅이 아닌 '움직이는 보석함'일 뿐입니다.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -123,27 +142,24 @@
                         <p class="text-slate-500 text-sm mt-2 font-bold">주요 세력 및 길드</p>
                     </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-    
-    <div class="group bg-white/70 backdrop-blur-xl border border-slate-200 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all">
-        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/2.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 transition-all shadow-sm">
-        <h4 class="text-xl font-black text-slate-800 mb-2">헌터 협회</h4>
-        <p class="text-xs text-slate-500 leading-relaxed font-medium">등록부터 통제까지 담당하는 공식 기관. 미등록 각성자 및 불법 공략을 단속하는 절대적 권한을 가집니다.</p>
-    </div>
-
-    <div class="group bg-blue-50/50 backdrop-blur-xl border border-blue-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-blue-500">
-        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/0.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all shadow-sm">
-        <h4 class="text-xl font-black text-blue-600 mb-2 text-center font-bold">백야</h4>
-        <p class="text-xs text-slate-600 leading-relaxed font-medium">명예와 실적 중심의 엘리트 집단. 협회와 긴밀히 협력하며, 가장 효율적이고 정돈된 공략을 지향합니다.</p>
-    </div>
-
-    <div class="group bg-red-50/50 backdrop-blur-xl border border-red-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-red-500">
-        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/1.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all shadow-sm">
-        <h4 class="text-xl font-black text-red-600 mb-2 text-center font-bold">청룡</h4>
-        <p class="text-xs text-slate-600 leading-relaxed font-medium">압도적 화력과 수익 중심의 전투 특화 조직. 대형 게이트 공략의 선두에서 현장 실전력을 증명합니다.</p>
-    </div>
-
-</div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="group bg-white/70 backdrop-blur-xl border border-slate-200 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/2.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 transition-all shadow-sm">
+                            <h4 class="text-xl font-black text-slate-800 mb-2">헌터 협회</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed font-medium">등록부터 통제까지 담당하는 공식 기관. 미등록 각성자 및 불법 공략을 단속하는 절대적 권한을 가집니다.</p>
+                        </div>
+                        <div class="group bg-blue-50/50 backdrop-blur-xl border border-blue-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-blue-500">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/0.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all shadow-sm">
+                            <h4 class="text-xl font-black text-blue-600 mb-2 text-center font-bold">백야</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed font-medium">명예와 실적 중심의 엘리트 집단. 협회와 긴밀히 협력하며, 가장 효율적이고 정돈된 공략을 지향합니다.</p>
+                        </div>
+                        <div class="group bg-red-50/50 backdrop-blur-xl border border-red-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-red-500">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/1.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all shadow-sm">
+                            <h4 class="text-xl font-black text-red-600 mb-2 text-center font-bold">청룡</h4>
+                            <p class="text-xs text-slate-600 leading-relaxed font-medium">압도적 화력과 수익 중심의 전투 특화 조직. 대형 게이트 공략의 선두에서 현장 실전력을 증명합니다.</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-8 bg-white/60 backdrop-blur-md border border-white/40 rounded-[2.5rem] shadow-sm flex flex-col justify-center">
@@ -161,7 +177,7 @@
                         <ul class="text-sm space-y-3 opacity-80">
                             <li>• <b class="text-white font-bold">등급 측정:</b> 단독 공략 시 생존 가능성 기준</li>
                             <li>• <b class="text-white font-bold">레드 게이트:</b> 던전 내부 난이도가 변질되는 특수 현상</li>
-                            <li>• <b class="text-white font-bold">게이트 브레이크:</b> 공략 실패 시 마물이 현실로 쏟아지는 재난</li>
+                            <li>• <b class="text-white font-bold">게이트 브레이크:</b> 공략 실패 시 현실로 마물이 쏟아지는 재난</li>
                         </ul>
                     </div>
 
